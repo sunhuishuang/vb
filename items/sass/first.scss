@@ -1,0 +1,419 @@
+body,
+ul,
+dl,
+dt,
+dd,
+p,
+ol,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+form,
+img,
+table,
+figure,
+fieldset,
+legend {
+    margin: 0;
+    padding: 0;
+}
+
+ul,
+li,
+ol {
+    list-style: none;
+}
+
+img,
+fieldset {
+    border: 0;
+}
+
+img {
+    display: block;
+}
+
+a {
+    text-decoration: none;
+    color: #333;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-weight: 100;
+}
+
+body {
+    font-family: "微软雅黑";
+}
+
+input,
+a {
+    outline: none;
+}
+
+$background-color:#f0f0f0;
+#header-wrap {
+    height: 46px;
+    background: $background-color;
+}
+
+// 头部
+#header {
+    margin: 0 50px;
+    width: 1200px;
+    height: 46px;
+    font-size: 12px;
+    line-height: 46px;
+    color: #9e9e9e;
+    // 头部里的所有a
+    a {
+        color: #888;
+        span {
+            margin: 0 5px;
+            font-size: 12px;
+            color: #c81417;
+        }
+        &:hover {
+            color: #c81417;
+        }
+    }
+    // rigthNav
+    .rigthNav {
+        float: left;
+        .rn {
+            display: flex;
+            li {
+                position: relative;
+                margin-right: 15px;
+                // address奥特莱斯购物地址
+                .address {
+                    display: none;
+                }
+                &:hover .address {
+                    position: absolute;
+                    display: block;
+                    border: 1px solid #888;
+                    background: #fff;
+                    text-align: center;
+                    width: 120px;
+                    li {
+                        width: 120px;
+                        height: 46px;
+                        line-height: 46px;
+                        border-bottom: 1px solid #9e9e9e;
+                    }
+                }
+            }
+        }
+    }
+    // 奥特莱斯购物中心leftNav
+    .leftNav {
+        float: right;
+        ul {
+            display: flex;
+            li {
+                margin-left: 20px;
+            }
+        }
+    }
+}
+
+// search导航搜索
+#search-wrap {
+    width: 1200px;
+    height: 140px;
+    #search {
+        display: flex;
+        margin: 0 100px;
+        height: 75px;
+        margin-top: 30px;
+        img {
+            width: 192px;
+            height: 74px;
+            margin-left: 50px;
+            margin-right: 100px;
+        }
+        #txtk {
+            width: 450px;
+            height: 80px;
+            input {
+                width: 380px;
+                height: 37px;
+                border: 1px solid red;
+                float: left;
+                outline: none;
+                border-radius: 5px 0 0 5px;
+                font-size: 14px;
+            }
+            #btn {
+                float: left;
+                width: 60px;
+                height: 40px;
+                background: #c81417;
+                font-size: 22px;
+                color: #fff;
+                border: none;
+                border-radius: 0 5px 5px 0;
+                cursor: pointer;
+                outline: none;
+            }
+        }
+    }
+    #nav {
+        margin-top: 15px;
+        height: 45px;
+        ul {
+            display: flex;
+            justify-content: center;
+            li a {
+                margin-left: 145px;
+                height: 45px;
+                font-size: 20px;
+                line-height: 45px;
+                color: #333;
+                font-weight: bolder;
+                &:hover {
+                    color: #c81417;
+                    border-bottom: 5px solid #c81417;
+                }
+                span {
+                    color: #c81417;
+                    font-size: 20px;
+                }
+            }
+        }
+    }
+}
+
+// main
+#main {
+    width: 1200px;
+    .shou {
+        height: 439px;
+    }
+    img {
+        height: 548px;
+    }
+}
+
+//footer
+#footer {
+    margin: 0 100px;
+    height: 530px;
+    // 保证pledge
+    .pledge {
+        border-top: 1px solid #ededed;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 123px;
+        width: 1200px;
+        // margin: 0 48px;
+        figure {
+            width: 240px;
+            height: 112px;
+            margin-top: 40px;
+            display: flex;
+            // background: chartreuse;
+            img {
+                width: 62px;
+                height: 62px;
+            }
+            figcaption {
+                margin-left: 20px;
+                h2 {
+                    font-size: 18px;
+                    font-weight: bolder;
+                    color: #c81417;
+                    line-height: 40px;
+                }
+                p {
+                    font-size: 12px;
+                }
+            }
+        }
+    }
+    // 联系contact
+    .contact {
+        display: flex;
+        width: 1200px;
+        height: 200px;
+        border-top: 2px solid #ededee;
+        border-bottom: 2px solid #ededee;
+        padding-top: 20px;
+        // 微博
+        .wb {
+            font-size: 12px;
+            width: 180px;
+            height: 170px;
+            border-right: 2px solid #ededed;
+            padding-right: 50px;
+            .wx {
+                display: flex;
+                justify-content: space-between;
+                width: 180px;
+                height: 70px;
+                figure {
+                    span {
+                        font-size: 42px;
+                        color: #c81417;
+                    }
+                    figcaption {
+                        text-align: center;
+                        margin-top: 12px;
+                    }
+                }
+            }
+            // 客服service
+            .service {
+                width: 180px;
+                display: flex;
+                justify-content: space-between;
+                height: 65px;
+                margin-top: 20px;
+                sapn {
+                    width: 65px;
+                    height: 26px;
+                }
+                .phone {
+                    width: 130px;
+                    height: 40px;
+                    p {
+                        height: 20px;
+                        line-height: 20px;
+                    }
+                }
+            }
+            .zhou {
+                width: 180px;
+                height: 18px;
+                line-height: 18px;
+            }
+        }
+        // 联系
+        .shop {
+            width: 170px;
+            height: 180px;
+            border-right: 1px solid #ededed;
+            text-align: center;
+            p {
+                font-size: 14px;
+                height: 35px;
+                line-height: 35px;
+            }
+            li {
+                font-size: 12px;
+                line-height: 25px;
+            }
+        }
+        // 二维码
+        img {
+            width: 146px;
+            height: 146px;
+            margin-top: 14px;
+            margin-left: 40px;
+        }
+    }
+    // 最后end
+    .end {
+        width: 1200px;
+        height: 160px;
+        text-align: center;
+        margin: 0 auto;
+        ul {
+            display: flex;
+            justify-content: center;
+            margin-top: 25px;
+            font-size: 12px;
+            height: 18px;
+            margin-bottom: 12px;
+            li {
+                width: 70px;
+                height: 18px;
+                border-right: 1px solid;
+                text-align: center;
+            }
+            .last {
+                padding-left: 5px;
+                border: none
+            }
+        }
+        p {
+            font-size: 12px;
+            line-height: 21px;
+        }
+        h5 {
+            font-size: 12px;
+            line-height: 21px;
+            margin: 10px 0;
+        }
+        figure {
+            display: flex;
+            justify-content: center;
+            // margin: 30px 0 8px;
+            height: 20px;
+            font-size: 12px;
+        }
+        .icon {
+            display: flex;
+            justify-content: center;
+            img {
+                // width: 35px;
+                height: 35px;
+                margin-right: 5px;
+            }
+        }
+    }
+}
+
+// 右边
+#right {
+    position: fixed;
+    right: -337px;
+    top: 100px;
+    width: 385px;
+    height: 400px;
+    z-index: 99;
+    ul {
+        width: 52px;
+        height: 364px;
+        li {
+            display: flex;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            line-height: 50px;
+            border: 1px solid #ededee;
+            border-radius: 8px 0 0 8px;
+            margin-bottom: 4px;
+            &:hover {
+                em {
+                    position: absolute;
+                    left: -50px;
+                    width: 50px;
+                    display: block;
+                    font-style: normal;
+                }
+            }
+            em {
+                // border: 1px solid;
+                display: none;
+                font-size: 12px;
+            }
+            span {
+                font-size: 18px;
+            }
+        }
+    }
+    .right-box {
+        width: 320px;
+    }
+}

@@ -1,0 +1,425 @@
+//var _adwq = _adwq || [];
+//_adwq.push(['_setAccount', 'uvdqp']);
+//_adwq.push(['_setDomainName', '.aolaigo.com']);
+//_adwq.push(['_trackPageview']);
+
+//MediaV流量统计
+//var _mvq = _mvq || [];
+//_mvq.push(['$setAccount', 'm-27669-0']);
+//_mvq.push(['$logConversion']);
+//(function () {
+//    var mvl = document.createElement('script');
+//    mvl.type = 'text/javascript'; mvl.async = true;
+//    mvl.src = "http://material.mediav.com/bjjs/mba_ka.js";
+//    var s = document.getElementsByTagName('script')[0];
+//    s.parentNode.insertBefore(mvl, s);
+//})();
+
+
+var _mvq = _mvq || [];
+_mvq.push(['$setAccount', 'm-80312-0']);
+
+_mvq.push(['$logConversion']);
+(function () {
+    var mvl = document.createElement('script');
+    mvl.type = 'text/javascript'; mvl.async = true;
+    mvl.src = ('https:' == document.location.protocol ? 'https://static-ssl.mediav.com/mvl.js' : 'http://static.mediav.com/mvl.js');
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(mvl, s);
+})();
+
+//品友互动（DSP）代码 其他页和商品页
+function callPY(goodsData)
+{
+	try{
+		window._py = window._py || [];
+		_py.push(['a', 'Bv..PEmzdPQzKDd8JQ9grXowJX']);
+		_py.push(['domain', 'stats.ipinyou.com']);
+		_py.push(['e', '']);
+
+		if(!!goodsData)
+		{
+			_py.push(['pi', goodsData]);
+		}
+
+		-function (d) {
+		    var s = d.createElement('script'),
+		    e = d.body.getElementsByTagName('script')[0]; e.parentNode.insertBefore(s, e),
+		    f = 'https:' == location.protocol;
+		    s.src = (f ? 'https' : 'http') + '://' + (f ? 'fm.ipinyou.com' : 'fm.p0y.cn') + '/j/adv.js';
+		}(document);
+
+	}catch(ex){}
+	
+	$("body").append("<noscript><img src=\"//stats.ipinyou.com/adv.gif?a=Bv..PEmzdPQzKDd8JQ9grXowJX&e=\" style=\"display:none;\" /><noscript>");
+}
+
+var callPYFlag = callPYFlag || false;
+if (!callPYFlag)
+{
+	callPY();
+}
+
+function cartCallPY(_money,_productList)
+{
+	!function(w,d,e){
+	//var _money='购物车金额，例如：160.00';
+	//var _productList='购物车清单，例如：10999117,2;10999119,2;';
+	var b=location.href,
+		c=d.referrer,
+		f,s,
+		g=d.cookie,h=g.match(/(^|;)\s*ipycookie=([^;]*)/),
+		i=g.match(/(^|;)\s*ipysession=([^;]*)/);
+		
+		if (w.parent!=w)
+		{f=b;b=c;c=f;}
+		
+		u='//stats.ipinyou.com/cvt?a='+e('Bv.IG.CePYTXdTFNlGLRhHdFGX8P')+'&c='+e(h?h[2]:'')+'&s='+e(i?i[2].match(/jump\%3D(\d+)/)[1]:'')+'&u='+e(b)+'&r='+e(c)+'&rd='+(new Date()).getTime()+'&Money='+e(_money)+'&ProductList='+e(_productList)+'&e=';
+		
+		function _()
+		{
+			if(!d.body)
+			{
+				setTimeout(_(),100);
+			}else{
+				s= d.createElement('script');s.src = u;d.body.insertBefore(s,d.body.firstChild);
+			}
+		}
+		_();
+	}(window,document,encodeURIComponent);
+}
+
+function orderCallPY(_orderno,_money,_productList)
+{
+	!function(w,d,e){
+		//var _orderno='订单编号，例如：test001';
+		//var _money='订单金额，例如：160.00';
+		//var _productList='订单清单，例如：10999117,2;10999119,2;';
+		var b=location.href,c=d.referrer,f,s,g=d.cookie,h=g.match(/(^|;)\s*ipycookie=([^;]*)/),i=g.match(/(^|;)\s*ipysession=([^;]*)/);if (w.parent!=w){f=b;b=c;c=f;};u='//stats.ipinyou.com/cvt?a='+e('Bv.WG.RWJ0eUJg5BPQrpdQic-_fP')+'&c='+e(h?h[2]:'')+'&s='+e(i?i[2].match(/jump\%3D(\d+)/)[1]:'')+'&u='+e(b)+'&r='+e(c)+'&rd='+(new Date()).getTime()+'&OrderNo='+e(_orderno)+'&Money='+e(_money)+'&ProductList='+e(_productList)+'&e=';
+		function _(){if(!d.body){setTimeout(_(),100);}else{s= d.createElement('script');s.src = u;d.body.insertBefore(s,d.body.firstChild);}}_();
+	}(window,document,encodeURIComponent);
+}
+
+function registerCallPY(_userno)
+{
+	!function(w,d,e){
+	//var _userno='注册用户ID'; //替换此处!;
+	var b=location.href,c=d.referrer,f,s,g=d.cookie,h=g.match(/(^|;)\s*ipycookie=([^;]*)/),i=g.match(/(^|;)\s*ipysession=([^;]*)/);if (w.parent!=w){f=b;b=c;c=f;};u='//stats.ipinyou.com/cvt?a='+e('Bv.mQ.T4wNTjToLkGxvhDz5LnCL0')+'&c='+e(h?h[2]:'')+'&s='+e(i?i[2].match(/jump\%3D(\d+)/)[1]:'')+'&u='+e(b)+'&r='+e(c)+'&rd='+(new Date()).getTime()+'&OrderNo='+e(_userno)+'&e=';
+	function _(){if(!d.body){setTimeout(_(),100);}else{s= d.createElement('script');s.src = u;d.body.insertBefore(s,d.body.firstChild);}}_();
+	}(window,document,encodeURIComponent);
+}
+//Piwik
+//var _paq = _paq || [];
+//_paq.push(['trackPageView']);
+//_paq.push(['enableLinkTracking']);
+//(function () {
+//    var u = "//flow.aolaigo.com/";
+//    _paq.push(['setTrackerUrl', u + 'piwik.php']);
+//    _paq.push(['setSiteId', 1]);
+//    var d = document, g = d.createElement('script'), s = d.getElementsByTagName('script')[0];
+//    g.type = 'text/javascript'; g.async = true; g.defer = true; g.src = u + 'piwik.js'; s.parentNode.insertBefore(g, s);
+//})();
+
+//注册成功
+//扩展参数, 可填 用户名 或 用户ID(可选)
+//事件价值 (可选)
+function reg_ad(user_name) {
+    try {
+        //_adwq.push(['_setAction', '7nagy1', user_name, '']);
+
+
+        var _mvq = window._mvq || []; window._mvq = _mvq;
+        _mvq.push(['$setAccount', 'm-80312-0']);
+        _mvq.push(['$setGeneral', 'registered', '', /*用户名*/ user_name, /*用户id*/ user_name]);
+        _mvq.push(['$logConversion']);
+
+
+
+        ////品友互动（DSP）代码
+        !function (w, d, e) {
+            var _orderno = user_name; //替换此处!;
+            var b = location.href, c = d.referrer, f, s, g = d.cookie, h = g.match(/(^|;)\s*ipycookie=([^;]*)/), i = g.match(/(^|;)\s*ipysession=([^;]*)/); if (w.parent != w) { f = b; b = c; c = f; }; u = '//stats.ipinyou.com/cvt?a=' + e('Bv.mQ.T4wNTjToLkGxvhDz5LnCL0') + '&c=' + e(h ? h[2] : '') + '&s=' + e(i ? i[2].match(/jump\%3D(\d+)/)[1] : '') + '&u=' + e(b) + '&r=' + e(c) + '&rd=' + (new Date()).getTime() + '&OrderNo=' + e(_orderno) + '&e=';
+            function _() { if (!d.body) { setTimeout(_(), 100); } else { s = d.createElement('script'); s.src = u; d.body.insertBefore(s, d.body.firstChild); } } _();
+        }(window, document, encodeURIComponent);
+    }
+    catch (ex) {
+    }
+}
+
+//收藏
+//可填 用户名 或 用户ID(可选)
+//商品id
+function collection_ad(user_name, product_id) {
+    try {
+        //_adwq.push(['_setAction', '7nawxl', user_name, product_id.toString()]);
+    }
+    catch (ex) {
+    }
+}
+
+//分享
+//可填 用户名 或 用户ID(可选)
+//商品id
+function share_ad(user_name, product_id) {
+    try {
+        //_adwq.push(['_setAction', '7nb3mz', user_name, product_id.toString()]);
+    }
+    catch (ex) {
+    }
+}
+
+//加入购物车
+function add_cart_ad(user_name, product_id, product_name, product_price, product_num, category_id, category_name) {
+    try {
+        //_adwq.push(['_setDataType', 'cart']);
+
+        ////1234567是一个例子，请换成当前登陆用户ID或用户名
+        //_adwq.push(['_setCustomer', user_name]);
+
+        //// 09890是一个例子，请填入商品编号  - 必填项
+        //// 电视是一个例子，请填入商品名称  - 必填项
+        //// 12.00是一个例子，请填入商品金额  - 必填项
+        //// 1是一个例子，请填入商品数量  - 必填项
+        //// A123是一个例子，请填入商品分类编号  - 必填项
+        //// 家电是一个例子，请填入商品分类名称  - 必填项
+        //_adwq.push(['_setItem', product_id.toString(), product_name, product_price.toString(), product_num.toString(), category_id.toString(), category_name]);
+
+        //// 下面是提交订单代码，此段代码必须放在以上代码后面 - 必填项
+        //_adwq.push(['_trackTrans']);
+
+
+        /////////MediaV
+        //var _mvq = window._mvq || []; window._mvq = _mvq;
+        //_mvq.push(['$setGeneral', 'cartview', '', '', '']);
+        //_mvq.push(['$addItem', '', /*商品id*/ product_id, '', '', '']);
+        //_mvq.push(['$logData']);
+
+
+        ////品友互动（DSP）代码
+        !function (w, d, e) {
+            var _money = product_price.toString();
+            var _productList = product_id.toString() + "," + product_num.toString() + ";";
+            var b = location.href, c = d.referrer, f, s, g = d.cookie, h = g.match(/(^|;)\s*ipycookie=([^;]*)/), i = g.match(/(^|;)\s*ipysession=([^;]*)/); if (w.parent != w) { f = b; b = c; c = f; }; u = '//stats.ipinyou.com/cvt?a=' + e('Bv.IG.CePYTXdTFNlGLRhHdFGX8P') + '&c=' + e(h ? h[2] : '') + '&s=' + e(i ? i[2].match(/jump\%3D(\d+)/)[1] : '') + '&u=' + e(b) + '&r=' + e(c) + '&rd=' + (new Date()).getTime() + '&Money=' + e(_money) + '&ProductList=' + e(_productList) + '&e=';
+            function _() { if (!d.body) { setTimeout(_(), 100); } else { s = d.createElement('script'); s.src = u; d.body.insertBefore(s, d.body.firstChild); } } _();
+        }(window, document, encodeURIComponent);
+
+
+        ///
+        // add the first product to the order
+        //_paq.push(['addEcommerceItem',
+        //product_id.toString(), // (required) SKU: Product unique identifier
+        //product_name, // (optional) Product name
+        //[category_name], // (optional) Product category, string or array of up to 5 categories
+        //product_price.toString(), // (recommended) Product price
+        //product_num // (optional, default to 1) Product quantity
+        //]);
+        //// Here it is important to add all other products found in the cart, even the products not updated by the current "Add to cart" click
+
+        //// Records the cart for this visit
+        //_paq.push(['trackEcommerceCartUpdate',
+        //product_price.toString()]); // (required) Cart amount
+        //_paq.push(['trackPageView']);
+    }
+    catch (ex) {
+    }
+}
+
+//删除购物车
+//1234567是一个例子，请换成当前登陆用户ID或用户名
+function del_cart_ad(user_name, product_id, product_name, product_price, product_num, category_id, category_name) {
+    try {
+        //_adwq.push(['_setDataType', 'delete']);
+
+        //// 1234567是一个例子，请换成当前登陆用户ID或用户名
+        //_adwq.push(['_setCustomer', user_name]);
+
+        //// 09890是一个例子，请填入商品编号  - 必填项
+        //// 电视是一个例子，请填入商品名称  - 必填项
+        //// 12.00是一个例子，请填入商品金额  - 必填项
+        //// 1是一个例子，请填入商品数量  - 必填项
+        //// A123是一个例子，请填入商品分类编号  - 必填项
+        //// 家电是一个例子，请填入商品分类名称  - 必填项
+        //_adwq.push(['_setItem', product_id.toString(), product_name, product_price.toString(), product_num.toString(), category_id.toString(), category_name]);
+
+        //// 下面是提交订单代码，此段代码必须放在以上代码后面 - 必填项
+        //_adwq.push(['_trackTrans']);
+    }
+    catch (ex) {
+    }
+}
+
+//订单代码
+function order_ad(user_name, order_code, order_price, order_time, obj) {
+    try {
+        //_adwq.push(['_setDataType', 'order']);
+
+        //// 1234567是一个例子，请换成当前登陆用户ID或用户名
+        //_adwq.push(['_setCustomer', user_name]);
+
+        //// 12345678是一个例子，请填入订单编号  - 必填项
+        //// 100.00是一个例子，请填入实际支付金额 – 必填项
+        //// 2011-09-30 15:18:09是一个例子，请填入下单时间 – 可选
+        //_adwq.push(['_setOrder', order_code, order_price.toString(), order_time.toString()]);
+
+        //// 下面代码是商品组代码，根据订单中包括多少种商品来部署，每种商品部署一组
+        //// 09890是一个例子，请填入商品编号  - 必填项
+        //// 电视是一个例子，请填入商品名称  - 必填项
+        //// 12.00是一个例子，请填入商品金额  - 必填项
+        //// 1是一个例子，请填入商品数量  - 必填项
+        //// A123是一个例子，请填入商品分类编号  - 必填项
+        //// 家电是一个例子，请填入商品分类名称  - 必填项
+        ////var object = [{ product_id: "", product_name: "", product_price: "", product_num: "", category_id: "", category_name: "" }];
+        //for (var i in obj) {
+        //    var item = obj[i];
+        //    _adwq.push(['_setItem', item.product_id.toString(), item.product_name, item.product_price.toString(), item.product_num.toString(), item.category_id.toString(), item.category_name]);
+        //}
+
+        //// 下面是提交订单代码，此段代码必须放在以上代码后面 - 必填项
+        //_adwq.push(['_trackTrans']);
+
+
+
+        /////////MediaV
+        //var _mvq = window._mvq || []; window._mvq = _mvq;
+        //_mvq.push(['$setGeneral', 'ordercreate', '', '', '']);
+        //_mvq.push(['$addOrder',/*订单号*/ order_code, /*订单金额*/ order_price.toString()]);
+        //for (var i in obj) {
+        //    var item = obj[i];
+        //    _mvq.push(['$addItem', /*订单号*/ order_code, /*商品id*/ item.product_id.toString(), '', '', '']);
+        //}
+        //_mvq.push(['$logData']);
+
+
+
+        var _mvq = _mvq || [];
+        _mvq.push(['$setAccount', 'm-80312-0']);
+        _mvq.push(['$setGeneral', 'ordercreate', '', /*用户名*/ user_name, /*用户id*/ user_name]);
+        _mvq.push(['$logConversion']);
+        _mvq.push(['$addOrder',/*订单号*/ order_code, /*订单金额*/ order_price.toString()]);
+
+        for (var i in obj) {
+            var item = obj[i];
+            _mvq.push(['$addItem', /*订单号*/ order_code, /*商品id*/ item.product_id.toString(), /*商品名称*/ item.product_name, /*商品价格*/ item.product_price.toString(), /*商品数量*/ item.product_num.toString(), /*商品页url*/ '', /*商品页图片url*/ '']);
+        }
+        _mvq.push(['$logData']);
+
+
+
+        ////////品友互动（DSP）代码
+        var porudctList = "";
+
+        for (var i in obj) {
+            var item = obj[i];
+            porudctList = porudctList + item.product_id.toString() + ",1;";
+        }
+
+/*
+        !function (w, d, e) {
+            var _orderno = order_code;
+            var _money = order_price.toString();
+            var _productList = porudctList;
+            var b = location.href, c = d.referrer, f, s, g = d.cookie, h = g.match(/(^|;)\s*ipycookie=([^;]*)/), i = g.match(/(^|;)\s*ipysession=([^;]*)/); if (w.parent != w) { f = b; b = c; c = f; }; u = '//stats.ipinyou.com/cvt?a=' + e('Bv.WG.RWJ0eUJg5BPQrpdQic-_fP') + '&c=' + e(h ? h[2] : '') + '&s=' + e(i ? i[2].match(/jump\%3D(\d+)/)[1] : '') + '&u=' + e(b) + '&r=' + e(c) + '&rd=' + (new Date()).getTime() + '&OrderNo=' + e(_orderno) + '&Money=' + e(_money) + '&ProductList=' + e(_productList) + '&e=';
+            function _() { if (!d.body) { setTimeout(_(), 100); } else { s = d.createElement('script'); s.src = u; d.body.insertBefore(s, d.body.firstChild); } } _();
+        }(window, document, encodeURIComponent);
+      */
+
+        //
+        //for (var i in obj) {
+        //    var item = obj[i];
+        //    // add the first product to the order
+        //    _paq.push(['addEcommerceItem',
+        //    item.product_id.toString(), // (required) SKU: Product unique identifier
+        //    item.product_name, // (optional) Product name
+        //    "aolaigo", // (optional) Product category. You can also specify an array of up to 5 categories eg. ["Books", "New releases", "Biography"]
+        //    item.product_price.toString(), // (recommended) Product price
+        //    1 // (optional, default to 1) Product quantity
+        //    ]);
+        //    // Here you can add other products in the order
+        //}
+        // Specifiy the order details to Piwik server &amp; sends the data to Piwik server
+        //_paq.push(['trackEcommerceOrder',
+        //order_code, // (required) Unique Order ID
+        //order_price.toString(), // (required) Order Revenue grand total (includes tax, shipping, and subtracted discount)
+        //order_price.toString(), // (optional) Order sub total (excludes shipping)
+        //0, // (optional) Tax amount
+        //0, // (optional) Shipping amount
+        //false // (optional) Discount offered (set to false for unspecified parameter)
+        //]);
+        //// we recommend to leave the call to trackPageView() on the Order confirmation page
+        //_paq.push(['trackPageView']);
+
+
+    }
+    catch (ex) {
+    }
+}
+
+//浏览商品(品友)
+function item_view_ad(user_name, product_id, product_name, product_price, product_num, category_id, category_name, product_url, origprice, brand) {
+    try {
+        ////////品友互动（DSP）代码
+        var str_soldOut = "0";
+
+        if (base_category_id == "252" || base_category_id == "16" || base_category_id == "247" || base_category_id == "1300" || base_category_id == "26") {
+            str_soldOut = "1";
+        }
+
+        var _goodsData = {
+            id: product_id.toString(),// 商品ID
+            name: product_name, // 商品名称
+            origPrice: origprice.toString(), // 商品原价(非必填)
+            price: product_price.toString(), // 商品售价
+            brand: brand, // 商品品牌(非必填)
+            imgUrl: product_url, // 商品预览图
+            productUrl: hs.domain.item+product_id.toString()+".html", // 商品URL地址
+            categoryId: category_id, // 所属分类ID
+            category: category_name, // 所属分类完整路径
+            promotion: '热卖', // 促销信息
+            discount: '', // 折扣数字(非必填)
+            soldOut: str_soldOut, // 状态 1下架，0在售（必填）
+            domain: '' // 分站（如有分站必填）
+        };
+
+        callPY(_goodsData);
+
+
+        //360
+        //var _mvq = window._mvq || [];
+        //window._mvq = _mvq;
+        //_mvq.push(['$setAccount', 'm-80312-0']);
+
+        //_mvq.push(['$setGeneral', 'goodsdetail', '', /*用户名*/ user_name, /*用户id*/ user_name]);
+        //_mvq.push(['$logConversion']);
+
+        //_mvq.push(['setPageUrl', /*单品着陆页url*/ hs.domain.item + product_id.toString() + ".html"]);	//如果不需要特意指定单品着陆页url请将此语句删掉
+        //_mvq.push(['$addGoods',  /*分类id*/ category_id.toString(), /*品牌id*/ '', /*商品名称*/ product_name,/*商品ID*/ product_id.toString(),/*商品售价*/ product_price.toString(), /*商品图片url*/ product_url, /*分类名*/ category_name, /*品牌名*/ brand, /*商品库存状态1或是0*/ '1', /*网络价*/ '',/*收藏人数*/ '', /*商品下架时间*/ '']);
+        //_mvq.push(['$addPricing', /*价格描述*/ product_price.toString()]);
+        //_mvq.push(['$logData']);
+    }
+    catch (ex) {
+    }
+}
+
+
+
+
+//================360推广=====================
+var call360Flag = call360Flag || false;
+
+if (!call360Flag) {
+    call360();
+}
+function call360()
+{
+   
+    (function () {
+        var mvl = document.createElement('script');
+        mvl.type = 'text/javascript'; mvl.async = true;
+        mvl.src = ('https:' == document.location.protocol ? 'https://static-ssl.mediav.com/mvl.js' : 'http://static.mediav.com/mvl.js');
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(mvl, s);
+    })();
+
+}
+
+

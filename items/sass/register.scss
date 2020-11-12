@@ -1,0 +1,285 @@
+// 标志
+#logo {
+    width: 1200px;
+    height: 115px;
+    display: flex;
+    justify-content: space-between;
+    img {
+        height: 80px;
+        width: 192px;
+        margin-top: 35px;
+    }
+    .logo-b {
+        height: 112px;
+        width: 720px;
+        ul {
+            display: flex;
+            justify-content: space-between;
+            li {
+                display: flex;
+                // align-items: center;
+                img {
+                    width: 62px;
+                    height: 62px;
+                }
+                div {
+                    width: 90px;
+                    height: 62px;
+                    margin-top: 30px;
+                    margin-left: 10px;
+                    h2 {
+                        font-size: 18px;
+                        color: #d61518;
+                        line-height: 40px;
+                        height: 40px;
+                    }
+                    p {
+                        height: 18px;
+                        font-size: 12px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+#banner {
+    float: left;
+}
+
+// 注册
+#register {
+    height: 502px;
+    width: 352px;
+    border: 1px solid #d0d0d0;
+    float: right;
+    // 注册上半部分
+    .register-t {
+        width: 352px;
+        height: 52px;
+        background-color: #f5f5f5;
+        border-bottom: 1px solid #f0f0f0;
+        display: flex;
+        justify-content: space-around;
+        em {
+            font-style: normal;
+            line-height: 52px;
+        }
+        p {
+            font-size: 14px;
+            line-height: 52px;
+            a {
+                color: #f00;
+            }
+        }
+    }
+    // 注册下半部分
+    .register-b {
+        width: 300px;
+        height: 448px;
+        margin: 10px auto;
+        .txt-z1,
+        .txt-z2 {
+            ul {
+                display: flex;
+                // 注册账号
+                .txt1 {
+                    height: 35px;
+                    width: 56px;
+                    color: #666;
+                    text-align: left;
+                    line-height: 35px;
+                    font-size: 14px;
+                }
+                // 文本框
+                .txt2 {
+                    width: 226px;
+                    height: 36px;
+                    margin-left: 5px;
+                    input {
+                        padding-left: 5px;
+                        height: 36px;
+                        width: 227px;
+                        border: none;
+                        border: 1px solid #e6e6e6;
+                        border-radius: 4px;
+                    }
+                }
+                // 秘密
+                .txt4 {
+                    input {
+                        padding-left: 5px;
+                        height: 36px;
+                        width: 124px;
+                        border: none;
+                        border: 1px solid #e6e6e6;
+                        border-radius: 4px;
+                    }
+                }
+                // 验证
+                .txt3 {
+                    input {
+                        height: 37px;
+                        width: 92px;
+                        margin-left: 8px;
+                        border: none;
+                        background: #eaeaea;
+                        border-radius: 5px;
+                    }
+                }
+            }
+            a {
+                input {
+                    width: 265px;
+                    height: 40px;
+                    display: block;
+                    background: #C81417;
+                    color: #fff;
+                    text-align: center;
+                    line-height: 40px;
+                    font-weight: 700;
+                    font-size: 14px;
+                    border: none;
+                    border-radius: 5px;
+                }
+            }
+        }
+    }
+}
+
+// 登录
+#login-wrap {
+    // 登录前 
+    .login-before {
+        float: right;
+        width: 340px;
+        height: 377px;
+        border: 1px solid;
+        position: relative;
+        a {
+            line-height: 60px;
+            z-index: 1;
+            font-size: 13px;
+            margin-left: 10px;
+            color: #f00;
+        }
+        // 普通登录
+        .login-common {
+            .qr {
+                width: 60px;
+                height: 60px;
+                position: absolute;
+                top: 0;
+                right: 0;
+                cursor: pointer;
+                background: url(../image/下载.png) no-repeat;
+                background-position: -75px -75px;
+            }
+            // 文本框
+            .login-wen {
+                width: 240px;
+                height: 224px;
+                margin: 0 auto;
+                .inpt-icon {
+                    position: relative;
+                    height: 70px;
+                    width: 242px;
+                    span {
+                        position: absolute;
+                        top: 12px;
+                        left: 10px;
+                        font-size: 20px;
+                        color: #e6e6e6;
+                    }
+                    input {
+                        border-radius: 10px;
+                        outline: 0;
+                        line-height: 40px;
+                        height: 42px;
+                        width: 200px;
+                        padding-left: 40px;
+                        border: 1px solid #e6e6e6;
+                    }
+                    .error {
+                        width: 228px;
+                        height: 30px;
+                    }
+                }
+            }
+            // 忘记密码
+            .code {
+                height: 40px;
+                color: #a9acac;
+                label {
+                    font-size: 14px;
+                    input {
+                        width: 14px;
+                        height: 14px;
+                        vertical-align: middle;
+                        margin-left: 10px;
+                    }
+                }
+                a {
+                    line-height: 40px;
+                    height: 40px;
+                    margin-left: 70px;
+                    color: #a9acac;
+                }
+            }
+            // 登录按钮
+            .login-but {
+                width: 240px;
+                height: 40px;
+                input {
+                    width: 240px;
+                    height: 40px;
+                    background: #C81417;
+                    color: #FFF;
+                    border-radius: 5px;
+                    text-align: center;
+                    display: block;
+                    padding: 5px 0;
+                    border: none;
+                    cursor: pointer;
+                }
+            }
+            // min-hint小提示
+            .min-hint {
+                width: 340px;
+                height: 18px;
+                margin: 5px 0;
+                p {
+                    font-size: 12px;
+                    color: #a9acac;
+                    text-align: center;
+                }
+            }
+            // qq & wx
+            .other-login {
+                width: 170px;
+                height: 50px;
+                display: flex;
+                justify-content: space-between;
+                margin: 0 auto;
+                li {
+                    .qq {
+                        width: 30px;
+                        height: 30px;
+                        background: url(../image/qq.png);
+                        background-position: 0 -180px;
+                    }
+                    .wx {
+                        width: 30px;
+                        height: 30px;
+                        background: url(../image/qq.png);
+                        background-position: 0 -226px;
+                    }
+                    span {
+                        font-size: 12px;
+                        color: #a9acac;
+                    }
+                }
+            }
+        }
+    }
+}

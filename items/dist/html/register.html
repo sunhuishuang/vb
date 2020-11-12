@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/register.css">
+    <link rel="stylesheet" href="../css/first.css">
+    <script src="../js/jquery1.11.js"></script>
+</head>
+
+<body>
+    <div id="logo">
+        <a href="first.html">
+            <img src="../image/CggUF1mgDUCAHcWmAAAaPIY0xT4626.png" alt="">
+        </a>
+        <!-- 头部的右边保证 -->
+        <div class="logo-b">
+            <ul>
+                <li>
+                    <img src="../image/1.jpg" alt="">
+                    <div>
+                        <h2>100%</h2>
+                        <p>全场正品保证</p>
+                    </div>
+                </li>
+                <li>
+                    <img src="../image/2.jpg" alt="">
+                    <div>
+                        <h2>SALE</h2>
+                        <p>每天低价特卖</p>
+                    </div>
+                </li>
+                <li> <img src="../image/4.jpg" alt="">
+                    <div>
+                        <h2>7Days</h2>
+                        <p>七天无理由换货</p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div id="banner">
+        <img src="../image/CggUFl4URtmAdoZVAAL6eBDwkM8431=673x558.jpg" alt="">
+    </div>
+    <div id="register">
+        <!-- 注册上半部分 -->
+        <div class="register-t">
+            <em>注册华盛奥莱会员</em>
+            <p><a href="../html/login.html">已有账户，登录</a></p>
+        </div>
+        <!-- 注册下半部分 -->
+        <div class="register-b">
+            <!-- 文本框 -->
+            <div class="txt-z1">
+                <ul>
+                    <li class="txt1">注册账号</li>
+                    <li class="txt2">
+                        <input type="text" placeholder="请输入手机号" id="iptTexts">
+                    </li>
+                </ul>
+            </div>
+            <!-- 提示 -->
+            <div class="txt-z2">
+                <ul>
+                    <li class="txt1"></li>
+                    <li class="txt2">
+                        <div class="hint"> </div>
+                    </li>
+                </ul>
+            </div>
+            <!-- 输入密码 -->
+            <div class="txt-z1">
+                <ul>
+                    <li class="txt1">输入密码</li>
+                    <li class="txt2">
+                        <input type="text" placeholder="请输入密码" id="iptPsds">
+                    </li>
+                </ul>
+            </div>
+            <!-- 提示秘密  -->
+            <div class="txt-z2">
+                <ul>
+                    <li class="txt1"></li>
+                    <li class="txt2">
+                        <div class="hint"> </div>
+                    </li>
+                </ul>
+            </div>
+            <!-- 确认秘密 -->
+            <div class="txt-z1">
+                <ul>
+                    <li class="txt1">确认秘密</li>
+                    <li class="txt2">
+                        <input type="text" placeholder="请输入秘密" id="txt">
+                    </li>
+                </ul>
+            </div>
+            <!-- 提示秘密 -->
+            <div class="txt-z2">
+                <ul>
+                    <li class="txt1"></li>
+                    <li class="txt2">
+                        <div class="hint"> </div>
+                    </li>
+                </ul>
+            </div>
+            <!-- 验证码 1-->
+            <div class="txt-z1">
+                <ul>
+                    <li class="txt1">验证码</li>
+                    <li class="txt4">
+                        <input type="text" placeholder="请输入验证码">
+                    </li>
+                    <li class="reglia">
+                        <img style="vertical-align: middle;" onclick="this.src='../image/validcode.ashx?r=' + Math.random()" alt="" src="../image/validcode.ashx" id="imgValidCode">
+                    </li>
+                </ul>
+            </div>
+            <!-- 提示验证码 -->
+            <div class="txt-z2">
+                <ul>
+                    <li class="txt1"></li>
+                    <li class="txt2">
+                        <div class="hint"> </div>
+                    </li>
+                </ul>
+            </div>
+            <!-- 短信验证2 -->
+            <div class="txt-z1">
+                <ul>
+                    <li class="txt1">短信验证</li>
+                    <li class="txt4">
+                        <input type="text" placeholder="请输入验证码">
+                    </li>
+                    <li class="txt3">
+                        <input type="button" value="获取验证码">
+                    </li>
+                </ul>
+            </div>
+            <!-- 提示短信验证 -->
+            <div class="txt-z2">
+                <ul>
+                    <li class="txt1"></li>
+                    <li class="txt2">
+                        <div class="hint"> </div>
+                    </li>
+                </ul>
+            </div>
+            <!-- 提交注册 -->
+
+            <div class="txt-z2">
+                <a href="login.html">
+                    <input type="button" value="注册" id="btn">
+                </a>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        $("#btn").click(function() {
+            let username = $("#iptTexts").val();
+            let password = $("#iptPsds").val();
+            let url = "http://jx.xuzhixiang.top/ap/api/reg.php";
+            $.ajax({
+                type: "Get",
+                url,
+                data: `username=${username}&password=${password}`,
+                success: function(res) {
+                    if (res.code == 1) {
+                        alert(res.msg);
+                        location.href = "login.html";
+                    } else {
+                        alert(res.msg)
+                    }
+                }
+            })
+        })
+    </script>
+
+</body>
+
+</html>

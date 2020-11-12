@@ -1,0 +1,64 @@
+/**
+ * Created by haox on 2016/12/19.
+ */
+//基于时间订阅器 一次性 消耗型
+//一个基于时间的事件订阅器,时间开始和结束都有相应的回调,当调用trigger并传入时间后将会运行到达时间的回调,执行后会把相应时间的回调清出堆栈
+var TimeEventLoop = (function(){
+    var TimeEventLists = {};
+    var listen = function(starttime,endtime,startfn,endfn,diff){
+        var diff = Math.abs(diff)?diff:0;
+        if(new Date().getTime() - diff > endtime){
+            endfn?endfn():'';
+            return false;
+        }
+        if(!TimeEventLists[starttime]){
+            TimeEventLists[starttime] = [];
+        }
+        TimeEventLists[starttime].push(startfn);
+        if(endfn){
+            if(!TimeEventLists[endtime]){
+                TimeEventLists[endtime] = [];
+            }
+            TimeEventLists[endtime].push(endfn);
+        }
+    }
+    var trigger = function(nowTime){
+
+        for(var i in TimeEventLists){
+            if(i <= nowTime){
+                var tempI = i;
+                for(var index=0;TimeEventLists[i]&&index<(TimeEventLists[i].length);index++){
+                    var tempIndex = index;
+                    if(index == (TimeEventLists[i].length - 1)){
+                        TimeEventLists[i][index](function(){
+                            delete TimeEventLists[tempI];
+                            if($.isEmptyObject(TimeEventLists)){
+                            }
+                        });
+                    }else{
+                        TimeEventLists[i][index](function(){
+
+                            TimeEventLists[tempI].splice(tempIndex,tempIndex + 1);
+                        });
+                    }
+                }
+            }else{
+                var delay = (i - nowTime);
+                var runtime = i;
+                (function(runtime,delay){
+                    setTimeout(function(){
+                        TimeEventLoop.trigger(runtime);
+                    },delay);
+                })(runtime,delay)
+
+            }
+        }
+    }
+    return {
+        "TimeEventLists":TimeEventLists,
+        "listen":listen,
+        "trigger":trigger
+    }
+})();
+
+

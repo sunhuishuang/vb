@@ -1,0 +1,35 @@
+//hs domains
+var hs = hs || {};
+hs.domain={
+	web:"http://www.aolaigo.com/",
+	style:"http://staticfile.aolaigo.com/",
+	login:"http://login.aolaigo.com/",
+	member:"http://member.aolaigo.com/",
+	manage:"http://manage.aolaigo.com/",
+	order:"http://order.aolaigo.com/",
+	ordermgr:"http://ordermgr.aolaigo.com/",
+	item:"http://item.aolaigo.com/",
+	product:"http://product.aolaigo.com/",
+	search:"http://search.aolaigo.com/",
+	cart:"http://cart.aolaigo.com/",
+	pay:"http://pay.aolaigo.com/",
+	skin:"http://skin.aolaigo.com/",
+	activity:"http://activity.aolaigo.com/",
+	help:"http://help.aolaigo.com/",
+        helpmgr:"http://helpmgr.aolaigo.com/",
+	sale:"http://sale.aolaigo.com/",
+	cdn:"http://cnd.aolaigo.com/",
+	memberapi:"http://memberapi.aolaigo.com/",
+	cms:"http://cms.aolaigo.com/",
+	brand:"http://brand.aolaigo.com/",
+	order3:"http://orderseller.aolaigo.com/",
+        cmsmgr: "http://cmsmgr.aolaigo.com/",
+        msg:"http://message.aolaigo.com/",
+	call:"http://10.28.88.103:8099/",
+	imgs:["http://img1.aolaigo.com/","http://img2.aolaigo.com/","http://img3.aolaigo.com/","http://img4.aolaigo.com/","http://img5.aolaigo.com/"],
+	//imgs:["http://192.168.115.35/group1/"],
+	getimg:function(){
+		return hs.domain.imgs[Math.floor(Math.random() * (hs.domain.imgs.length))];
+	}
+
+};

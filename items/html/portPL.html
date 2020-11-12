@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/jquery1.11.js"></script>
+</head>
+
+<body>
+    <script>
+        $(function() {
+            $.post("http://jx.xuzhixiang.top/ap/api/goods/goods-add.php", {
+                pimg: "../image/xie1.jpg",
+                pname: "鞋子",
+                pprice: "109",
+                pdesc: "耐穿",
+                uid: 1030
+            }, data => {
+                console.log(data)
+            });
+            $.post("http://jx.xuzhixiang.top/ap/api/goods/goods-add.php", {
+                pimg: "../image/tup1.jpg",
+                pname: "垫子",
+                pprice: "99",
+                pdesc: "耐穿",
+                uid: 1030
+            }, data => {
+                console.log(data)
+            });
+            $.post("http://jx.xuzhixiang.top/ap/api/goods/goods-add.php", {
+                pimg: "../image/tup2.jpg",
+                pname: "垫子",
+                pprice: "59",
+                pdesc: "耐穿",
+                uid: 1030
+            }, data => {
+                console.log(data)
+            });
+            $.post("http://jx.xuzhixiang.top/ap/api/goods/goods-add.php", {
+                pimg: "../image/tup3.png",
+                pname: "积分",
+                pprice: "500",
+                pdesc: "划算",
+                uid: 1030
+            }, data => {
+                console.log(data)
+            })
+        })
+    </script>
+    <ul id="ul"></ul>
+    <script>
+        // 获取
+        // $(function() {
+        //     $.get("http://jx.xuzhixiang.top/ap/api/productlist.php", {
+        //         uid: 1030
+        //     }, data => {
+        //         console.log(data)
+        //     })
+        // })
+    </script>
+
+</body>
+
+</html>

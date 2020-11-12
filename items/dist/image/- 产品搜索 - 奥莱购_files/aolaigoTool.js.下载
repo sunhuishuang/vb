@@ -1,0 +1,187 @@
+/**
+ * Created by haox on 2017/1/3.
+ * 重构工具
+ */
+//全局事件订阅发布器
+var EventLoop = (function () {
+    var EventList = {};
+    return {
+        listen: function (key, fn) {
+            if (!EventList[key]) {
+                EventList[key] = [];
+            }
+            if (fn) {
+                EventList[key].push(fn);
+            }
+        },
+        trigger: function () {
+            //这里的arguments 是类数组[可以理解为自己组装的添加了数组属性的对象,而并不是真正重数组那继承过来的]
+            var key = Array.prototype.shift.apply(arguments);
+            if (EventList[key] && EventList[key].length) {
+                for (var i in EventList[key]) {
+                    EventList[key][i].apply(this, arguments);
+                }
+            }
+        },
+        remove: function (key) {
+            delete EventList[key];
+        },
+        getList: function () {
+            console.log(EventList);
+        }
+    }
+})()
+
+
+//单列方法
+//可改变状态值,可重置
+var getSignal = function (fn) {
+    var _signal = null;
+    return {
+        run: function () {
+            return _signal || (_signal = fn.apply(this, arguments));
+        },
+        getKey: function () {
+            return _signal;
+        },
+        setKey: function (key) {
+            _signal = key;
+        }
+    }
+}
+
+
+//Aop装饰者
+Function.prototype.after = function (fn) {
+    var _self = this;
+    return function () {
+        var result = null;
+        result = _self.apply(this, arguments);
+        if (result) {
+            fn.apply(this, arguments);
+            return result;
+        }
+    }
+}
+Function.prototype.before = function (fn) {
+    var _self = this;
+    return function () {
+       var result = fn.apply(this, arguments);
+        if (result) {
+            return _self.apply(this, arguments);
+        }
+    }
+}
+
+
+//时间格式化工具 by zhihao
+//new Date('2015-10-10 10:10').Format('yyyy-MM-dd');
+Date.prototype.Format = function (fmt) {
+    var o = {
+        "M+": this.getMonth() + 1, //月份
+        "d+": this.getDate(), //日
+        "h+": this.getHours(), //小时
+        "m+": this.getMinutes(), //分
+        "s+": this.getSeconds(), //秒
+        "q+": Math.floor((this.getMonth() + 3) / 3), //季度
+        "S": this.getMilliseconds() //毫秒
+    };
+    if (/(y+)/.test(fmt)) fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
+    for (var k in o)
+        if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+    return fmt;
+}
+
+//图片地址补全 by zhihao
+function imgsrc(src, size) {
+    if (src.length == 0) { return ""; }
+
+    var str = new RegExp("http://");
+    var src1 = src;
+    if (!str.test(src)) {
+        src = hs.domain.getimg() + "group1/" + src1;
+    }
+    //尺寸
+    if (size) {
+        var sizeString = "=" + size + "x" + size;
+        if (src.search(sizeString) === -1) {
+            var imgtype = /\.[a-z]{1,3}$/i,
+                imgend = imgtype.exec(src)[0];
+            src = src.replace(new RegExp('(=\\d+x\\d+)?\\' + imgend), sizeString + imgend);
+        }
+    }
+    return src;
+}
+
+
+//懒加载函数
+//effect :fadeIn|show
+var imgLazyLoad = function(effect){
+    try{
+        $("img.te-lazy").lazyload({
+            effect: effect,
+            load: function () {
+
+            }
+        });
+    }catch(e){
+       console.log(e);
+    }
+    try{
+        $("img.te-lazy-100").lazyload({
+            effect: effect,
+            load: function () {
+                $(this).css({"width":"100%"});
+            }
+        });
+    }catch(e){
+        console.log(e);
+    }
+
+
+
+}
+
+
+
+//获取服务器时间并开始渲染
+$.ajax({
+    type: "GET",
+    url:"http://cms.aolaigo.com/Handler/get_time.ashx?cmd=getDateTime",
+    dataType: "jsonp",
+    crossDomain: true,
+    success: function (obj) {
+        var timeNow=obj;
+        if (obj.ResultCode == 0) {
+            var  originTime = new Date(obj.Obj).getTime();
+            window.diff = (new Date()).getTime() - originTime;
+
+        }
+    }
+});
+
+
+
+//原来就有的代码 很多地方用到的样子
+function GetUserName() {
+    try {
+        if (typeof ($.cookie("__hs_uuinfo")) == "undefined") {
+            return "";
+        }
+        else {
+            return $.cookie("uuid");
+        }
+    } catch (e) {
+    }
+}
+function GetUserID() {
+    try {
+        if (typeof ($.cookie("__hs_uuinfo")) == "undefined") {
+            return "";
+        }
+        else {
+            return $.cookie("uuid");
+        }
+    } catch (e) {
+    }
+}

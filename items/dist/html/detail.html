@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/detail.css">
+    <script src="../js/jquery1.11.js"></script>
+
+</head>
+
+<body>
+
+    <div id="prod">
+        <div id="midArea">
+            <img src="" alt="">
+            <div id="zoom"></div>
+        </div>
+        <div id="explan">
+            <p class="one"></p>
+            <p class="two"></p>
+            <span class="three"></span>
+            <br>
+            <button id="reduce">-</button>
+            <input type="text " value=1 id="ipt">
+            <button id="add">+</button>
+            <br><br>
+            <button id="addCart">加入购物车</button>
+        </div>
+    </div>
+    <!-- 从页面得到图片 -->
+    <script type="text/javascript">
+        $.ajax({
+            url: 'http://jx.xuzhixiang.top/ap/api/detail.php',
+            data: {
+                id: location.search.split('=')[1],
+            },
+            success: function(res) {
+                $('#midArea img').attr('src', `${res.data.pimg}`)
+                $('.one').html(`${res.data.pname}`)
+                $('.two').html(`${res.data.pdesc}`)
+                $('.three').html(`${res.data.pprice}元`)
+            }
+        })
+    </script>
+    <script>
+        var reduce = document.getElementById("reduce");
+        var ipt = document.getElementById("ipt");
+        var add = document.getElementById("add");
+        var addCart = document.getElementById("addCart");
+        let paid = location.search.split('=')[1];
+        console.log(paid);
+        reduce.onclick = function() {
+            ipt.value--;
+            if (ipt.value <= 1) {
+                ipt.value = 1;
+            }
+        }
+        add.onclick = function() {
+            ipt.value++;
+        }
+        addCart.onclick = function() {
+            $.ajax({
+                type: "Get",
+                url: "http://jx.xuzhixiang.top/ap/api/add-product.php",
+                data: {
+                    uid: localStorage.getItem("u-id"),
+                    pid: paid,
+                    pnum: $("#ipt").val()
+                }
+            })
+            location.href = "cart.html";
+        }
+    </script>
+
+
+
+</body>
+
+</html>

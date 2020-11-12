@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/register.css">
+    <link rel="stylesheet" href="../css/first.css">
+    <link rel="stylesheet" href="../iconfont/iconfont.css">
+    <script src="../js/jquery1.11.js"></script>
+</head>
+
+<body>
+    <div id="logo">
+        <a href="first.html">
+            <img src="../image/CggUF1mgDUCAHcWmAAAaPIY0xT4626.png" alt="">
+        </a>
+        <!-- 头部的右边保证 -->
+        <div class="logo-b">
+            <ul>
+                <li>
+                    <img src="../image/1.jpg" alt="">
+                    <div>
+                        <h2>100%</h2>
+                        <p>全场正品保证</p>
+                    </div>
+                </li>
+                <li>
+                    <img src="../image/2.jpg" alt="">
+                    <div>
+                        <h2>SALE</h2>
+                        <p>每天低价特卖</p>
+                    </div>
+                </li>
+                <li> <img src="../image/4.jpg" alt="">
+                    <div>
+                        <h2>7Days</h2>
+                        <p>七天无理由换货</p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div id="banner">
+        <img src="../image/CggUFl4URtmAdoZVAAL6eBDwkM8431=673x558.jpg" alt="">
+    </div>
+    <!-- 登录 -->
+    <div id="login-wrap">
+        <!-- 登录前 -->
+        <div class="login-before">
+            <a href="../html/register.html">立即注册</a>
+            <!-- 普通登录 -->
+            <div class="login-common">
+                <div class="qr">
+                </div>
+                <div class="login-wen">
+                    <div class="inpt-icon">
+                        <span class="icon iconfont">&#xe639;</span>
+                        <input type="text" placeholder="请输入用户名" id="iptText">
+                        <div class="error"></div>
+                    </div>
+                    <div class="inpt-icon">
+                        <span class="icon iconfont">&#xe622;</span>
+                        <input type="text" placeholder="请输入密码" id="iptPsds">
+                        <div class="error"></div>
+                    </div>
+                    <!-- 忘记密码 -->
+                    <div class="code">
+                        <!-- 记住 -->
+                        <label> <input type="checkbox">    记住密码</label>
+                        <!-- 忘记 -->
+                        <a href="">忘记密码</a>
+                    </div>
+                    <!-- 登录按钮 -->
+                    <div class="login-but">
+                        <input type="button" value="登录" id="btn1">
+                    </div>
+                </div>
+                <div class="min-hint">
+                    <p>无需注册，直接登录</p>
+                </div>
+                <!-- qq & wx -->
+                <ul class="other-login">
+                    <li>
+                        <p class="qq"></p>
+                        <span>QQ登录</span>
+                    </li>
+                    <li>
+                        <p class="wx"></p>
+                        <span>微信登录</span>
+                    </li>
+                </ul>
+            </div>
+            <!-- 二维码登录 -->
+            <div class="login-qr"></div>
+
+        </div>
+        <!-- 登录后 -->
+
+    </div>
+    <script>
+        $(function() {
+            $("#btn1").click(function() {
+                let username = $("#iptText").val();
+                let password = $("#iptPsds").val();
+                let url = 'http://jx.xuzhixiang.top/ap/api/login.php'
+                $.ajax({
+                    type: "POST",
+                    url,
+                    data: `username=${username}&password=${password}`,
+                    success: function(res) {
+                        console.log(res.data);
+                        if (res.code == 1) {
+                            localStorage.setItem("u-id", res.data.id);
+                            localStorage.setItem("u-token", res.data.token)
+                            alert("登录成功")
+                            location.href = "first.html"
+                        } else {
+                            alert(res.msg)
+                        }
+                    }
+                })
+            })
+        })
+    </script>
+</body>
+
+</html>

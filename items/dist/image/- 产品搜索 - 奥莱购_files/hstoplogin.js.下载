@@ -1,0 +1,219 @@
+(function ($) {
+    TopLogin = {
+        IsLogin: false,
+        loginName: null,
+        onlogined: null,
+        Empty: function () {
+            TopLogin.IsLogin = false;
+        },
+        Init: function () {
+            var winHtml = "";
+            winHtml += '<div id="divWin" class="login-popup">';
+            winHtml += '<div class="login-popup-a">';
+            winHtml += '<div class="login-popup-a01">您尚未登录</div>';
+            winHtml += '<div class="login-popup-a02" onclick="TopLogin.hideLoginWin();"></div>';
+            winHtml += '</div>';
+            winHtml += '<div class="login-popup-b">';
+            winHtml += '<ul>';
+            winHtml += '<li><input maxlength="100" placeholder="邮箱/用户名/手机" autocomplete="off" class="txt i-error" name="loginname" id="loginname" type="text" /></li>';
+            winHtml += '<li><input maxlength="20" placeholder="请输入密码" class="txt-m i-error" id="loginpwd" name="loginpwd" style="" type="password" /></li>';
+            winHtml += '<li><input placeholder="输入验证码" class="polg-yz"type="text" id="authcode" name="authcode" /><img id="imgValidCode" src="' + hs.domain.member + 'validcode.aspx?r=' + Math.random() + ' alt="" style="vertical-align: middle;" /></li>';
+            winHtml += '<li class="login-popup-tis"><em></em></li>';
+            winHtml += '<li>';
+            winHtml += '<span class="lg-popup01"><input id="chkrememberMe" class="checkbox" name="chkrememberMe" type="checkbox" />自动登录</span>';
+            winHtml += '<span class="lg-popup02"><a href="' + hs.domain.member + 'findpwd.aspx">忘记密码?</a></span>';
+            winHtml += '</li>';
+            winHtml += '<li><input id="btnLogin" name="btn-login" class="btn-login" value="登　录" tabindex="4" type="button" /></li>';
+            winHtml += '<li>';
+            winHtml += '<span class="lg-popup01">合作账号登录：</span>';
+            winHtml += '<span class="lg-popup02"><a href="' + hs.domain.member + 'registration.aspx">注册新账号></a></span>';
+            winHtml += '</li>';
+            winHtml += '<li>';
+            winHtml += '<p>';
+            winHtml += '<em><a href="' + hs.domain.member + 'authorizelogin.aspx?pf=tencent" alt="腾讯QQ"><img src="' + hs.domain.skin + 'image/login-qq.jpg" alt="" /></a></em>';
+            winHtml += '<em><img src="' + hs.domain.skin + 'image/login-xl.jpg"  alt="" /></em>';
+            winHtml += '<em><img src="' + hs.domain.skin + 'image/login-zfb.jpg" alt="" /></em>';
+            winHtml += '</p>';
+            winHtml += '</li>';
+            winHtml += '</ul>';
+            winHtml += '</div>';
+            winHtml += '</div>';
+            winHtml += '<div id="divBack"></div>';
+
+            $("body").append(winHtml);
+
+            $("#btnLogin").click(function () {
+                var loginname = $("#loginname").val();
+                var loginpwd = $("#loginpwd").val();
+                var authcode = $("#authcode").val();
+                var chkremember = $("#chkrememberMe").attr("checked") ? "on" : "";
+
+                if ($.trim(loginname) == "") {
+                    $("li.login-popup-tis").children().html("用户名不能为空！");
+                    return;
+                }
+
+                if ($.trim(loginpwd) == "") {
+                    $("li.login-popup-tis").children().html("密码不能为空！");
+                    return;
+                }
+
+                if ($.trim(authcode) == "") {
+                    $("li.login-popup-tis").children().html("验证码不能为空！");
+                    return;
+                }
+
+                TopLogin.goLogin(loginname, loginpwd, authcode, chkremember);
+            });
+
+            //回车键提交登录
+            $("#loginname, #loginpwd, #authcode").bind('keyup', function (event) {
+                if (event.keyCode == 13) {
+                    $("#btnLogin").click();
+                    return false;
+                }
+            });
+
+            $("#btnClose").click(function () {
+                TopLogin.hideLoginWin();
+            });
+
+            $("#imgValidCode").click(function () {
+                $("#imgValidCode").attr("src", hs.domain.member + "validcode.aspx?r=" + Math.random());
+            });
+        },
+        goLogin: function (loginname, password, authcode, chkremember) {
+            $.ajax({
+                type: "GET",
+                url: hs.domain.member + "handlers/loginservice.ashx?r=" + Math.random(),
+                data: "loginname=" + loginname + "&loginpwd=" + password + "&authcode=" + authcode + "&chkrememberMe=" + chkremember,
+                dataType: "jsonp",
+                async: true,
+                jsonp: "callback",
+                crossDomain: true,
+                success: function (obj) {
+                    obj = eval(obj);
+                    EventLoop.trigger('memberStateLoginData', obj);
+                    if (obj.success) {
+                        //成功
+                        TopLogin.IsLogin = true;
+                        TopLogin.loginName = loginname;
+                        TopLogin.showLoginBar();
+
+                        if (TopLogin.onlogined != null && typeof (TopLogin.onlogined) == "function") {
+                            TopLogin.onlogined(TopLogin);
+                        }
+                    }
+                    if (obj.username) {
+                        $("li.login-popup-tis").children().html(obj.username);
+                    }
+                    if (obj.pwd) {
+                        $("li.login-popup-tis").children().html(obj.pwd);
+                    }
+                    if (obj.emptyAuthcode) {
+                        $("li.login-popup-tis").children().html(obj.emptyAuthcode);
+                    }
+                },
+                error: function () {
+                    return;
+                }
+            });
+        },
+        showLoginBar: function () {
+            if (TopLogin.IsLogin) {
+                TopLogin.hideLoginWin();
+                //$("ul.g-cf-test").children().eq(5).html('<a rel="nofollow" href="' + hs.domain.member + 'login.aspx?type=logout">退出</a>');
+                //$("ul.g-cf-test").children().eq(6).html('<div class="g-e username">Hi，' + $.cookie("unick") + '</div>');
+
+                $("li.li_reg").html('<a rel="nofollow" href="' + hs.domain.member + 'login.aspx?type=logout">退出</a>');
+                //$("li.li_login").html('<div class="g-e username">Hi，' + $.cookie("unick") + ' </div>');
+                $("li.li_login").html('<a href="' + hs.domain.member + 'member.aspx" class="li_login">' + $.cookie("unick") + '</a>');
+                $("li.li_login").addClass("i-name");
+            }
+        },
+        showLoginWin: function () {
+            $("#divWin").show();
+            $("#divBack").show();
+            $.cookie("hsc", "2");
+        },
+        hideLoginWin: function () {
+            $("#divWin").hide();
+            $("#divBack").hide();
+            $.cookie("hsc", "0");
+        },
+        execLogin: function (loginCallBack, showWin,isBack) {
+            if (TopLogin.IsLogin && TopLogin.onlogined != null && typeof (TopLogin.onlogined) == "function") {
+                if (isBack != null && typeof (isBack) != "undefined" && isBack) {
+                    loginCallBack();
+                }
+                else {
+                    TopLogin.onlogined(TopLogin);
+                }
+            }
+            else {
+                $.ajax({
+                    type: "GET",
+                    url: hs.domain.member + "handlers/checkstatusservice.ashx?r=" + Math.random(),
+                    dataType: "jsonp",
+                    async: true,
+                    jsonp: "callback",
+                    crossDomain: true,
+                    success: function (obj) {
+                        if (obj == "0") {
+                            if (typeof (showWin) == "undefined" || showWin == null || showWin) {
+                                TopLogin.showLoginWin();
+                            }
+                            TopLogin.onlogined = loginCallBack;
+                        }
+                        else {
+                            TopLogin.IsLogin = true;
+
+                            TopLogin.showLoginBar();
+
+                            if (loginCallBack != null && typeof (loginCallBack) == "function") {
+                                loginCallBack();
+                            }
+                        }
+                    }
+                });
+            }
+        },
+        execNewLogin: function () {
+            $.ajax({
+                type: "GET",
+                url: hs.domain.member + "handlers/checkstatusservice.ashx?r=" + Math.random(),
+                dataType: "jsonp",
+                async: true,
+                jsonp: "callback",
+                crossDomain: true,
+                success: function (obj) {
+                    if (obj == "0") {
+                        $("li.li_reg").html('<a href="' + hs.domain.member + 'registration.aspx">免费注册</a>');
+                        $("li.li_login").html('<a href="' + hs.domain.member + 'login.aspx">请登录</a>');
+
+                        var my_url = window.location.href;
+
+                        if (my_url.indexOf("login.aspx") < 0 || my_url.indexOf("registration.aspx") < 0) {
+
+                            $("li.li_login").find("a").attr("href", hs.domain.member + "login.aspx?ReturnUrl=" + escape(my_url));
+                        }
+
+                    }
+                    else {
+                        TopLogin.IsLogin = true;
+                        EventLoop.trigger('memberStateLogined',obj);
+                        $("li.li_reg").html('<a rel="nofollow" href="' + hs.domain.member + 'login.aspx?type=logout">退出</a>');
+                        $("li.li_login").html('<a href="' + hs.domain.member + 'member.aspx" class="li_login">' + $.cookie("unick") + '</a>');
+                        //$("li.li_login").html('<div class="g-e username">Hi，' + $.cookie("unick") + ' </div>');
+                        $("li.li_login").addClass("i-name");
+                    }
+                }
+            });
+        }
+    };
+
+    $(function () {
+        TopLogin.Empty();
+        TopLogin.Init();
+    })
+})(jQuery);

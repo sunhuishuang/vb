@@ -1,0 +1,137 @@
+(function ($) {
+    //window["_BFD"] = window["_BFD"] || {};
+    //_BFD.client_id = "百分点提供的账号";//测试环境用测试账号，线上用正式账号
+    //_BFD.script = document.createElement("script");
+    //_BFD.script.type = "text/javascript";
+    //_BFD.script.async = true;
+    //_BFD.script.charset = "utf-8";
+    //_BFD.script.src = ('https:' == document.location.protocol ? 'https://ssl-static1' :'http://static1') + '.baifendian.com/service/客户名称(由百分点提供)/客户名称.js';
+    //document.getElementsByTagName("head")[0].appendChild(_BFD.script);
+
+    $(function () {
+        window["_BFD"] = window["_BFD"] || {};
+        _BFD.client_id = "Caolaigo";
+        _BFD.BFD_USER = {
+            "user_id": SendMessage.GetUserName(), //网站当前用户id，如果未登录就为0或空字符串		
+            "user_cookie": SendMessage.GetLoginCookie() //网站当前用户的cookie，不管是否登录都需要传		
+        };
+        _BFD.script = document.createElement("script");
+        _BFD.script.type = "text/javascript";
+        _BFD.script.async = true;
+        _BFD.script.charset = "utf-8";
+        _BFD.script.src = (('https:' == document.location.protocol ? 'https://ssl-static1' : 'http://static1') + '.bfdcdn.com/service/aolaigo/aolaigo.js');
+        document.getElementsByTagName("head")[0].appendChild(_BFD.script);
+    });
+
+    SendMessage = {
+        //单品详情页
+        Detail: function (id, name, link, image_link, simage_link, price, market_price, category, brand, onsale, stock, color, size, start_time) {
+            window["_BFD"] = window["_BFD"] || {};
+            _BFD.BFD_INFO = {
+                "id": id,   //商品id号
+                "name": name,   //商品名称
+                "link": link,   //商品链接
+                "image_link": image_link,   //商品大图地址(浏览单个商品时大图的第一个链接)
+                "simage_link": simage_link,   //商品小图地址(浏览单个商品时下方小图的第一个链接（跟上面大图对应的小图）)
+                "price": price,   //在售价
+                "market_price": market_price,   //市场价
+                "category": category,//[["男装", "http://search.aolaigo.com/search.aspx?pcid=23"], ["男士上装", "http://search.aolaigo.com/search.aspx?pcid=2301"], ["T恤", "http://search.aolaigo.com/search.aspx?pcid=230101"]],   //商品的类别详细信息，第一个元素为类别名称，第二个元素为类别地址，2维数组;类别从大到小，数组最后一项为商品当前属类别
+                "brand": brand,   //商品所属品牌名称;
+                "onsale": true,   //上下架标识  在架为true, 下架为false;
+                "stock": stock,   //库存
+                "user_id": this.GetUserName(), //网站当前用户id，如果未登录就为0或空字符串
+                "group": ["123"],   //同一商品不同规格，款式时的父级商品ID;
+                "gender": "男士",   //性别;
+                "color": "灰色",   //颜色
+                "size": "XS", //尺码
+                "start_time": "199372894378",   //上架时间,时间戳
+                "page_type": "detail" //当前页面全称，请勿修改
+            };
+
+            //_BFD.AddCart(item_id, price, num);//点击加入购物车时调用此方法，三个参数为商品id（字符串格式），商品价格（数值型），加入购物车的数量（数值型）
+        },
+        //购物车
+        ShopCart: function (product_id) {
+            window["_BFD"] = window["_BFD"] || {};
+            _BFD.BFD_INFO = {
+                "ids": product_id,//["111", "222", "333"],   //加入购物车的商品id
+                "user_id": this.GetUserName(), //网站当前用户id，如果未登录就为0或空字符串
+                "page_type": "shopcart" //当前页面全称，请勿修改
+            };
+        },
+        //订单成功
+        Order: function (order_code, price_total, payment, express, order_items) {
+            window["_BFD"] = window["_BFD"] || {};
+            _BFD.BFD_INFO = {
+                "order_id": order_code,   //当前订单号，如果有拆单等特殊情况现象（一次购买中出现多个订单号）此页面代码不可用，请联系我修改；
+                "order_items": order_items,//[["10987", 12.00, 2], ["10987", 6.00, 1], ["10987", 120.00, 1]],   //同购物车页
+                "total": price_total,   //用户实际支付的价格
+                "payment": payment,   //支付方式
+                "express": express,   //快递方式，也就是快递名称，以下一样。没有可以不传输此项
+                "user_id": this.GetUserName(), //网站当前用户id，如果未登录就为0或空字符串
+                "page_type": "order" //当前页面全称，请勿修改
+            };
+        },
+        //首页
+        HomePage: function () {
+            window["_BFD"] = window["_BFD"] || {};
+            _BFD.BFD_INFO = {
+                "user_id": this.GetUserName(), //网站当前用户id，如果未登录就为0或空字符串
+                "page_type": "homepage" //当前页面全称，请勿修改
+            };
+        },
+        //频道页
+        Channel: function (channel_name) {
+            window["_BFD"] = window["_BFD"] || {};
+            _BFD.BFD_INFO = {
+                "channel_name": channel_name,//"男装",   //频道名称（首页主搜索条上的类别，比如户外运动，美妆生活，男装）
+                "user_id": this.GetUserName(), //网站当前用户id，如果未登录就为0或空字符串
+                "page_type": "channel" //当前页面全称，请勿修改
+            };
+        },
+        //列表页示
+        ProductList: function (category) {
+            window["_BFD"] = window["_BFD"] || {};
+            _BFD.BFD_INFO = {
+                "category": category,//[["男装", "http://search.aolaigo.com/search.aspx?pcid=23"], ["男士上装", "http://search.aolaigo.com/search.aspx?pcid=2301"], ["T恤", "http://search.aolaigo.com/search.aspx?pcid=230101"]],   //商品的类别详细信息，第一个元素为类别名称，第二个元素为类别地址，2维数组;类别从大到小，数组最后一项为商品当前属类别
+                "user_id": this.GetUserName(), //网站当前用户id，如果未登录就为0或空字符串
+                "page_type": "list" //当前页面全称，请勿修改
+            };
+        },
+        //搜索结果页
+        Search: function (search_word, search_result, search_id) {
+            window["_BFD"] = window["_BFD"] || {};
+            _BFD.BFD_INFO = {
+                "search_word": search_word,   //搜索词
+                "search_result": search_result,   //搜索有无结果，1表示有结果，0表示无结果
+                "search_id": search_id,//["111", "222", "333"],   //搜索的前3个结果
+                "user_id": this.GetUserName(), //网站当前用户id，如果未登录就为0或空字符串
+                "page_type": "search" //当前页面全称，请勿修改
+            };
+        },
+        //会员中心页
+        Account: function () {
+            window["_BFD"] = window["_BFD"] || {};
+            _BFD.BFD_INFO = {
+                "user_id": this.GetUserName(), //网站当前用户id，如果未登录就为0或空字符串
+                "page_type": "account" //当前页面全称，请勿修改
+            };
+        },
+        GetUserName: function () {
+            if (typeof ($.cookie("__hs_uuinfo")) == "undefined") {
+                return "0";
+            }
+            else {
+                return $.cookie("uuid");
+            }
+        },
+        GetLoginCookie: function () {
+            if (typeof ($.cookie("__hs_uuinfo")) == "undefined") {
+                return "";
+            }
+            else {
+                return $.cookie("__hs_uuinfo");
+            }
+        }
+    };
+})(jQuery);

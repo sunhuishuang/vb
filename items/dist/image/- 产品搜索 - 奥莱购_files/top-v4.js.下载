@@ -1,0 +1,815 @@
+﻿//监听
+
+//判断是否加载完成
+
+//满减标题处理
+function convertTitle(title) {
+    var convert = title.replace(/(\d+.\d+)/g, '<span class="deep_orange">$1</span>');;
+    return convert;
+}
+
+///<summary>获得字符串实际长度，中文2，英文1</summary>
+///<param name="str">要获得长度的字符串</param>
+function getLength (str) {
+    var realLength = 0, len = str.length, charCode = -1;
+    for (var i = 0; i < len; i++) {
+        charCode = str.charCodeAt(i);
+        if (charCode >= 0 && charCode <= 128) realLength += 1;
+        else realLength += 2;
+    }
+    return realLength;
+};
+ 
+//如果给定的字符串大于指定长度，截取指定长度返回，否者返回源字符串。  
+//字符串，长度  
+function cutstr(str, len) {
+    var str_length = 0;
+    var str_len = 0;
+    str_cut = new String();
+    str_len = str.length;
+    for (var i = 0; i < str_len; i++) {
+        a = str.charAt(i);
+        str_length++;
+        if (escape(a).length > 4) {
+            //中文字符的长度经编码之后大于4  
+            str_length++;
+        }
+        str_cut = str_cut.concat(a);
+        if (str_length >= len) {
+            str_cut = str_cut.concat("...");
+            return str_cut;
+        }
+    }
+    //如果给定字符串小于指定长度，则返回源字符串；  
+    if (str_length < len) {
+        return str;
+    }
+}
+
+var HSMiniCart = {
+    //普通商品
+    RenderNomal: function (list, item, isRender, checklist) {
+        var myCart = $('.myCart');
+        var rel_cont = myCart.find('.rel-cont');
+        var cartitem;
+        if (!isRender) {
+            cartitem = $('<div class="cart-item" cartmaincode="' + list.cart_main_code + '" cartdetailcode="' + item.cart_detail_code + '" goodactcode ="'+ item.good_act_code+'">').appendTo(rel_cont);
+        }
+        else {
+            if (checklist != null && checklist.length > 0) {
+                for (var i = 0; i < checklist.length; i++) {
+                    if (list.cart_main_code == checklist[i].MainCartCode && item.good_act_code == checklist[i].GoodActCode) {
+                        cartitem = rel_cont.find('.cart-item').filter('[cartmaincode="' + list.cart_main_code + '"][cartdetailcode="' + item.cart_detail_code + '"]');
+                        cartitem.empty();
+                    }
+                }
+            }
+        }
+        if (cartitem != null) {
+            var cont = $('<div class="cart-item-cont">').appendTo(cartitem);
+
+            //勾选框
+            var checkbox = $('<input cartmaincode="' + list.cart_main_code + '" cartdetailcode="' + item.cart_detail_code + '" goodactcode="' + item.good_act_code + '" sku_id="' + item.goods_id + '" isSelected="' + item.goods_selected + '" isOutOfStock="' + item.is_out_of_stock + '"  type="checkbox" class="fl cart-item-checkbox">').appendTo(cont);
+
+            //注册事件
+            HSMiniCart.registerCheckEvents(checkbox);
+
+            //图片+链接
+            $('<a href="' + hs.domain.item + item.goods_id + ".html" + '" target="_blank"><img src="' + item.goods_img + '" class ="cart-item-img fl" alt></a>').appendTo(cont);
+
+            //详情
+            var detail = $('<div class="cart-item-detail fl">').appendTo(cont);
+            var item_name = $('<div class="cart-item-name">').appendTo(detail);
+            var a = $('<a href="' + hs.domain.item + item.goods_id + ".html" + '" + class="cart-item-name">' + item.goods_brand + " " + item.goods_title + '</a>').appendTo(item_name);
+            //添加图标
+            if (item.is_haiwaigo == "1") {
+                if (item.is_overseassend == "1")
+                    a.prepend($('<span class="car-hwzy t-bg"></span>'));
+                else
+                    a.prepend($('<span class="car-hw t-bg"></span>'));
+            }
+            else if (item.source_type == "1") {
+                a.prepend($('<span class="car-zy t-bg"></span>'));
+            }
+            else if (item.source_type == "3" || item.source_type == "5") {
+                a.prepend($('<span class="car-zgtb t-bg"></span>'));
+            }
+
+            //其他标签
+            if (item.goods_attr.length > 0) {
+                $('<div class="cart-item-cate">' + cutstr(item.goods_attr,25) + '</div>').appendTo(detail);
+            }
+
+            //单价 数量 可优惠
+            var item_price = $('<div class="cart-item-prize" cartmaincode="' + list.cart_main_code + '" cartdetailcode="' + item.cart_detail_code + '" sku_id="' + item.goods_id + '" >').appendTo(detail);
+            $('<span class="cart-item-now fl">&yen;<span>' + item.goods_default + '</span></span>').appendTo(item_price);
+            $('<span class="cart-item-num fl">*' + item.goods_amount + '</span>').appendTo(item_price);
+            $('<span class="cart-item-youhui deep_orange fr">可优惠&yen;' + item.new_sub_promotion + '</span>').appendTo(item_price);
+
+            //底部
+            $('<div class="clearfloat">').appendTo(cont);
+
+            //存在单品赠品
+            if (item.goods_gift_list != null &&
+                item.goods_gift_list.length > 0) {
+
+                for (var k = 0; k < item.goods_gift_list.length; k++) {
+                    var gift = $('<div class="cart-item-gift">').appendTo(cont);
+                    $('<span class="deep_orange">[ 赠品 ] <a href="' + hs.domain.item + item.goods_gift_list[k].goods_id + ".html" + '" target="_blank" class="cart-item-gift-info">' + item.goods_gift_list[k].goods_title + '</a></span>').appendTo(gift);
+                }
+            }
+        }
+    },
+
+    //定额任选 headtype:1.不参与满减，2.满减并需要添加满减标签，3.满减不需要添加满减标签
+    RenderSelectActContent: function (list, rSelectGroup, headtype, isRender,checklist) {
+        if (rSelectGroup.length > 0) {
+            var myCart = $('.myCart');
+            var rel_cont = myCart.find('.rel-cont');
+            var cartitem;
+
+            if (!isRender) {
+                cartitem = $('<div class="cart-item" cartmaincode="' + list.cart_main_code + '">').appendTo(rel_cont);
+            }
+            else {
+                if (checklist != null && checklist.length > 0) {
+                    for (var i = 0; i < checklist.length; i++) {
+                        if (list.cart_main_code == checklist[i].MainCartCode) {
+                            cartitem = rel_cont.find('.cart-item').filter('[cartmaincode="' + list.cart_main_code + '"]');
+                            cartitem.empty();
+                        }
+                    }
+                }
+            }
+
+            if (cartitem != null) {
+                switch (headtype) {
+                    case 1:
+                        $('<div class="cart-item-btit">活动商品<span class="deep_orange">' + rSelectGroup[0].select_consume_total + '</span>元，任选<span class="deep_orange">' + rSelectGroup[0].select_need_num + '</span>件</div>').appendTo(cartitem);
+                        break;
+                    case 2:
+                        $('<div class="cart-item-btit">' + convertTitle(list.full_act_atrr) + '</div>').appendTo(cartitem);
+                        $('<div class="cart-item-stit"><span class="deep_orange">┕[任选] </span>活动商品<span class="deep_orange">' + rSelectGroup[0].select_consume_total + '</span>元，任选<span class="deep_orange">' + rSelectGroup[0].select_need_num + '</span>件</div>').appendTo(cartitem);
+                        break;
+                    case 3:
+                        $('<div class="cart-item-stit"><span class="deep_orange">┕[任选] </span>活动商品<span class="deep_orange">' + rSelectGroup[0].select_consume_total + '</span>元，任选<span class="deep_orange">' + rSelectGroup[0].select_need_num + '</span>件</div>').appendTo(cartitem);
+                        break;
+                }
+
+                var itemMulti = $('<div class="cart-item-multi"></div>').appendTo(cartitem);
+                //勾选
+                var div_check = $('<div class="checkbox-cont-multi"></div>').appendTo(itemMulti);
+
+                var checkbox = $('<input cartmaincode="' + list.cart_main_code + '" cartdetailcode="' + rSelectGroup[0].cart_detail_code + '" sku_id="' + rSelectGroup[0].goods_id + '" isSelected="' + rSelectGroup[0].goods_selected + '" isOutOfStock="' + rSelectGroup[0].is_out_of_stock + '"  type="checkbox" class="cart-item-checkbox">').appendTo(div_check);
+
+                //注册事件
+                HSMiniCart.registerCheckEvents(checkbox);
+
+                var cont;
+                for (var j = 0; j < rSelectGroup.length; j++) {
+                    cont = $('<div class="cart-item-cont">').appendTo(itemMulti);
+                    //图
+                    $('<a href="' + hs.domain.item + rSelectGroup[j].goods_id + ".html" + '" target="_blank"<img src="' + rSelectGroup[j].goods_img + '" class="cart-item-img fl" alt></a>').appendTo(cont);
+
+                    var detail = $('<div class="cart-item-detail fl"></div>').appendTo(cont);
+                    var item_name = $('<div class="cart-item-name"><div>').appendTo(detail);
+                    var a = $('<a href="' + hs.domain.item + rSelectGroup[j].goods_id + ".html" + '" class="cart-item-name">' + rSelectGroup[j].goods_brand + " " + rSelectGroup[j].goods_title + '</a>').appendTo(item_name);
+
+                    //添加标签
+                    if (rSelectGroup[j].is_haiwaigo == "1") {
+                        if (rSelectGroup[j].is_overseassend == "1")
+                            a.prepend($('<span class="car-hwzy t-bg"></span>'));
+                        else
+                            a.prepend($('<span class="car-hw t-bg"></span>'));
+                    }
+                    else if (rSelectGroup[j].source_type == "1") {
+                        a.prepend($('<span class="car-zy t-bg"></span>'));
+                    }
+                    else if (rSelectGroup[j].source_type == "3" || rSelectGroup[j].source_type == "5") {
+                        a.prepend($('<span class="car-zgtb t-bg"></span>'));
+                    }
+
+                    //其他标签
+                    if (rSelectGroup[j].goods_attr.length > 0) {
+                        $('<div class="cart-item-cate">' + cutstr(rSelectGroup[j].goods_attr,25) + '</div>').appendTo(detail);
+                    }
+
+                    //单价 数量 
+                    var item_price = $('<div class="cart-item-prize" cartmaincode="' + list.cart_main_code + '" cartdetailcode="' + rSelectGroup[j].cart_detail_code + '" sku_id="' + rSelectGroup[j].goods_id + '"></div>').appendTo(detail);
+                    $('<span class="cart-item-now fl">&yen;<span>' + rSelectGroup[j].goods_default + '</spen></span>').appendTo(item_price);
+                    $('<span class="cart-item-num fl">*' + rSelectGroup[j].goods_amount + '</span>').appendTo(item_price);
+
+                    $('<div class="clearfloat"></div>').appendTo(cont);
+                }
+            }
+        }
+    },
+
+    //满免
+    RenderGive: function (list, item, k,isRender,checklist) {
+        var myCar = $('.myCart');
+        var rel_cont = myCar.find('.rel-cont');
+        var cartitem;
+        
+        if (!isRender) {
+            if (k == 0) {
+                cartitem = $('<div class="cart-item" cartmaincode="' + list.cart_main_code + '">').appendTo(rel_cont);
+                $('<div class="cart-item-btit">' + convertTitle(list.full_act_atrr) + '</div>').appendTo(cartitem);
+            }
+            else
+                cartitem = rel_cont.find('.cart-item').filter('[cartmaincode="' + list.cart_main_code + '"]');
+        }
+        else {
+            if (checklist != null && checklist.length > 0) {
+                for (var i = 0; i < checklist.length; i++) {
+                    if (list.cart_main_code == checklist[i].MainCartCode) {
+                        cartitem = rel_cont.find('.cart-item').filter('[cartmaincode="' + list.cart_main_code + '"]');
+                        if (k == 0) {
+                            cartitem.empty();
+                            $('<div class="cart-item-btit">' + convertTitle(list.full_act_atrr) + '</div>').appendTo(cartitem);
+                        }
+                    }
+                }
+            }
+        }
+
+        if (cartitem != null) {
+            var itemcont = $('<div class="cart-item-cont"></div>').appendTo(cartitem);
+            //勾选
+            var checkbox = $('<input cartmaincode="' + list.cart_main_code + '" cartdetailcode="' + item.cart_detail_code + '" sku_id="' + item.goods_id + '" isSelected="' + item.goods_selected + '" isOutOfStock="' + item.is_out_of_stock + '"  type="checkbox" class="fl cart-item-checkbox">').appendTo(itemcont);
+
+            //注册事件
+            HSMiniCart.registerCheckEvents(checkbox);
+
+            $('<a href="' + hs.domain.item + item.goods_id + ".html" + '" target="_blank"<img src="' + item.goods_img + '" class="cart-item-img fl" alt></a>').appendTo(itemcont);
+
+            var detail = $('<div class="cart-item-detail fl"></div>').appendTo(itemcont);
+            var item_name = $('<div class="cart-item-name"><div>').appendTo(detail);
+            var a = $('<a href="' + hs.domain.item + item.goods_id + ".html" + '" class="cart-item-name">' + item.goods_brand + " " + item.goods_title + '</a>').appendTo(item_name);
+
+            //添加标签
+            if (item.is_haiwaigo == "1") {
+                if (item.is_overseassend == "1")
+                    a.prepend($('<span class="car-hwzy t-bg"></span>'));
+                else
+                    a.prepend($('<span class="car-hw t-bg"></span>'));
+            }
+            else if (item.source_type == "1") {
+                a.prepend($('<span class="car-zy t-bg"></span>'));
+            }
+            else if (item.source_type == "3" || item.source_type == "5") {
+                a.prepend($('<span class="car-zgtb t-bg"></span>'));
+            }
+
+            //其他标签
+            if (item.goods_attr.length > 0) {
+                $('<div class="cart-item-cate">' + cutstr(item.goods_attr,25) + '</div>').appendTo(detail);
+            }
+
+            //价格
+            var item_price = $('<div class="cart-item-prize"></div>').appendTo(detail);
+            if (item.goods_type == "4") {
+                $('<span class="cart-item-now t_line fl">&yen;<span>' + item.single_promotion_pirce + '</spen></span>').appendTo(item_price);
+                $('<span class="cart-item-num fl">*' + item.goods_amount + '</span>').appendTo(item_price);
+                $('<span class="cart-item-youhui deep_orange fr">可优惠&yen;' + (parseFloat(item.single_promotion_pirce) * parseFloat(item.goods_amount)).toFixed(2) + '</span>').appendTo(item_price);
+            }
+            else {
+                $('<span class="cart-item-now fl">&yen;<span>' + item.goods_default + '</spen></span>').appendTo(item_price);
+                $('<span class="cart-item-num fl">*' + item.goods_amount + '</span>').appendTo(item_price);
+                $('<span class="cart-item-youhui deep_orange fr">可优惠&yen;' + item.new_sub_promotion + '</span>').appendTo(item_price);
+            }
+
+            $('<div class="clearfloat"></div>').appendTo(itemcont);
+
+            //存在单品赠品
+            if (item.goods_gift_list != null &&
+                item.goods_gift_list.length > 0) {
+                for (var k = 0; k < item.goods_gift_list.length; k++) {
+                    var gift = $('<div class="cart-item-gift">').appendTo(itemcont);
+                    $('<span class="deep_orange">[ 赠品 ] <a href="' + hs.domain.item + item.goods_gift_list[k].goods_id + ".html" + '" target="_blank" class="cart-item-gift-info">' + item.goods_gift_list[k].goods_title + '</a></span>').appendTo(gift);
+                }
+            }
+        }
+    },
+    
+    RenderNewPerson: function (list, item, k, isRender, checklist) {
+        var myCar = $('.myCart');
+        var rel_cont = myCar.find('.rel-cont');
+        var cartitem;
+        if (!isRender) {
+            if (k == 0)
+                cartitem = $('<div class="cart-item" cartmaincode="' + list.cart_main_code + '">').appendTo(rel_cont);
+            else
+                cartitem = rel_cont.find('.cart-item').filter('[cartmaincode="' + list.cart_main_code + '"]');
+        }
+        else {
+            if (checklist != null && checklist.length > 0) {
+                for (var i = 0; i < checklist.length; i++) {
+                    if (list.cart_main_code == checklist[i].MainCartCode) {
+                        cartitem = rel_cont.find('.cart-item').filter('[cartmaincode="' + list.cart_main_code + '"]');
+                        if (k == 0)
+                            cartitem.empty();
+                    }
+                }
+            }
+        }
+
+        if (cartitem != null) {
+            if (k == 0) {
+                var stit_huangou;
+                $('<div class="cart-item-btit">' + convertTitle(list.full_act_atrr) + '</div>').appendTo(cartitem);
+
+            }//首个商品判断结束
+
+            var cont = $('<div class="cart-item-cont">').appendTo(cartitem);
+
+            //勾选框
+            var checkbox = $('<input cartmaincode="' + list.cart_main_code + '" cartdetailcode="' + item.cart_detail_code + '" sku_id="' + item.goods_id + '" isSelected="' + item.goods_selected + '" isOutOfStock="' + item.is_out_of_stock + '"  type="checkbox" class="fl cart-item-checkbox">').appendTo(cont);
+
+            //注册事件
+            HSMiniCart.registerCheckEvents(checkbox);
+
+            //图片+链接
+            $('<a href="' + hs.domain.item + item.goods_id + ".html" + '" target="_blank"><img src="' + item.goods_img + '" class ="cart-item-img fl" alt></a>').appendTo(cont);
+
+            //详情
+            var detail = $('<div class="cart-item-detail fl">').appendTo(cont);
+            var item_name = $('<div class="cart-item-name">').appendTo(detail);
+            var a = $('<a href="' + hs.domain.item + item.goods_id + ".html" + '" + class="cart-item-name">' + item.goods_brand + " " + item.goods_title + '</a>').appendTo(item_name);
+            //添加图标
+            if (item.is_haiwaigo == "1") {
+                if (item.is_overseassend == "1")
+                    a.prepend($('<span class="car-hwzy t-bg"></span>'));
+                else
+                    a.prepend($('<span class="car-hw t-bg"></span>'));
+            }
+            else if (item.source_type == "1") {
+                a.prepend($('<span class="car-zy t-bg"></span>'));
+            }
+            else if (item.source_type == "3" || item.source_type == "5") {
+                a.prepend($('<span class="car-zgtb t-bg"></span>'));
+            }
+
+            //其他标签
+            if (item.goods_attr.length > 0) {
+                $('<div class="cart-item-cate">' + cutstr(item.goods_attr, 25) + '</div>').appendTo(detail);
+            }
+
+            //单价 数量 可优惠
+            var item_price = $('<div class="cart-item-prize">').appendTo(detail);
+            $('<span class="cart-item-now fl">&yen;<span>' + item.goods_default + '</spen></span>').appendTo(item_price);
+            $('<span class="cart-item-num fl">*' + item.goods_amount + '</span>').appendTo(item_price);
+
+            $('<div class="clearfloat">').appendTo(cont);
+        }
+    },
+
+    //满减换
+    RenderFullNormal: function (list, item, k, isRender, checklist) {
+        var myCar = $('.myCart');
+        var rel_cont = myCar.find('.rel-cont');
+        var cartitem;
+        if (!isRender) {
+            if (k == 0)
+                cartitem = $('<div class="cart-item" cartmaincode="' + list.cart_main_code + '">').appendTo(rel_cont);
+            else
+                cartitem = rel_cont.find('.cart-item').filter('[cartmaincode="' + list.cart_main_code + '"]');
+        }
+        else {
+            if (checklist != null && checklist.length > 0) {
+                for (var i = 0; i < checklist.length; i++) {
+                    if (list.cart_main_code == checklist[i].MainCartCode) {
+                        cartitem = rel_cont.find('.cart-item').filter('[cartmaincode="' + list.cart_main_code + '"]');
+                        if (k == 0)
+                            cartitem.empty();
+                    }
+                }
+            }
+        }
+
+        if (cartitem != null) {
+            if (k == 0) {
+                var stit_huangou;
+                $('<div class="cart-item-btit">' + convertTitle(list.full_act_atrr) + '</div>').appendTo(cartitem);
+                if (list.huangou_title.length > 0) {
+                    stit_huangou = $('<div class="cart-item-stit"><span class="deep_orange fl">┕</span>' + list.huangou_title + '</div>').appendTo(cartitem);
+                }
+
+                //换购商品
+                var giftList = Enumerable.From(list.selected_goods)
+                    .Where(function (x) { return x.is_huangou == "1"; })
+                    .ToArray();
+
+                if (giftList != null && giftList.length > 0) {
+                    stit_huangou.empty();
+                    for (var j = 0; j < giftList.length; j++) {  
+                        $('<span class="deep_orange fl">┕[换购商品]</span>').appendTo(stit_huangou);
+                        $('<span class="cart-item-stit-name fl"><a href="'+ hs.domain.item +giftList[j].goods_id+".html"  + '" target="_blank">' + giftList[j].goods_title + '</a></span>').appendTo(stit_huangou);
+                        $('<span class="cart-item-stit-num fr">*<span>' + giftList[j].goods_amount + '</span></span>').appendTo(stit_huangou);
+                        $('<div class="clearfloat"></div>').appendTo(stit_huangou);
+                    }
+                }
+            }//首个商品判断结束
+
+            var cont = $('<div class="cart-item-cont">').appendTo(cartitem);
+
+            //勾选框
+            var checkbox = $('<input cartmaincode="' + list.cart_main_code + '" cartdetailcode="' + item.cart_detail_code + '" sku_id="' + item.goods_id + '" isSelected="' + item.goods_selected + '" isOutOfStock="' + item.is_out_of_stock + '"  type="checkbox" class="fl cart-item-checkbox">').appendTo(cont);
+
+            //注册事件
+            HSMiniCart.registerCheckEvents(checkbox);
+
+            //图片+链接
+            $('<a href="' + hs.domain.item + item.goods_id + ".html" + '" target="_blank"><img src="' + item.goods_img + '" class ="cart-item-img fl" alt></a>').appendTo(cont);
+
+            //详情
+            var detail = $('<div class="cart-item-detail fl">').appendTo(cont);
+            var item_name = $('<div class="cart-item-name">').appendTo(detail);
+            var a = $('<a href="' + hs.domain.item + item.goods_id + ".html" + '" + class="cart-item-name">' + item.goods_brand +" "+ item.goods_title + '</a>').appendTo(item_name);
+            //添加图标
+            if (item.is_haiwaigo == "1") {
+                if (item.is_overseassend == "1")
+                    a.prepend($('<span class="car-hwzy t-bg"></span>'));
+                else
+                    a.prepend($('<span class="car-hw t-bg"></span>'));
+            }
+            else if (item.source_type == "1") {
+                a.prepend($('<span class="car-zy t-bg"></span>'));
+            }
+            else if (item.source_type == "3" || item.source_type == "5") {
+                a.prepend($('<span class="car-zgtb t-bg"></span>'));
+            }
+
+            //其他标签
+            if (item.goods_attr.length > 0) {
+                $('<div class="cart-item-cate">' + cutstr(item.goods_attr,25) + '</div>').appendTo(detail);
+            }
+
+            //单价 数量 可优惠
+            var item_price = $('<div class="cart-item-prize">').appendTo(detail);
+            $('<span class="cart-item-now fl">&yen;<span>' + item.goods_default + '</spen></span>').appendTo(item_price);
+            $('<span class="cart-item-num fl">*' + item.goods_amount + '</span>').appendTo(item_price);
+            $('<span class="cart-item-youhui deep_orange fr">可优惠&yen;' + item.new_sub_promotion + '</span>').appendTo(item_price);
+
+            $('<div class="clearfloat">').appendTo(cont);
+
+            //存在单品赠品
+            if (item.goods_gift_list != null &&
+                item.goods_gift_list.length > 0) {
+
+                for (var k = 0; k < item.goods_gift_list.length; k++) {
+                    var gift = $('<div class="cart-item-gift">').appendTo(cont);
+                    $('<span class="deep_orange">[ 赠品 ] <a href="' + hs.domain.item + item.goods_gift_list[k].goods_id + ".html" + '" target="_blank" class="cart-item-gift-info">' + item.goods_gift_list[k].goods_title + '</a></span>').appendTo(gift);
+                }
+            }
+        }
+    },
+
+    RenderMiniCart: function (result, isRender, checklist) {
+        //初始化迷你购物车
+        if (!isRender) {
+            var myCar = $('.myCart');
+            var rel_cont = myCar.find('.rel-cont');
+            rel_cont.empty();
+        }
+
+        //非组合商品
+        var list;
+        var nonMultiMainItemList = Enumerable.From(result.list)
+            .Where(function (x) { return x.full_act_type == "" || x.full_act_type == null; })
+            .ToArray();
+
+        //非满减
+        if (nonMultiMainItemList != null &&
+            nonMultiMainItemList.length > 0) {
+            for (var i = 0 ; i < nonMultiMainItemList.length; i++) {
+                list = nonMultiMainItemList[i];
+                if (list.goods != null) {
+                    //普通
+                    for (var j = 0; j < list.goods.length; j++) {
+                        if (list.goods[j].item_type != "2") {
+                            for (var h = 0; h < list.goods[j].goods_list.length; h++) {
+                                HSMiniCart.RenderNomal(list, list.goods[j].goods_list[h], isRender,checklist);
+                            }
+                        }
+                    }
+                    //任选
+                    var rSelectList = Enumerable.From(list.goods)
+                        .Where(function (x) { return x.item_type == "2" })
+                        .ToArray();
+                    for (var h = 0; h < rSelectList.length; h++) {
+                        HSMiniCart.RenderSelectActContent(list, rSelectList[h].goods_list, 1, isRender,checklist);
+                    }
+                }
+            }
+        }
+
+        //满免
+        var giveList = Enumerable.From(result.list)
+            .Where(function (x) { return x.full_act_type == "12"; })
+            .ToArray();
+        var k = 0;
+        if (giveList != null && giveList.length > 0) {
+            for (var i = 0; i < giveList.length; i++) {
+                list = giveList[i];
+                if (list.goods != null) {
+                    k = 0;
+                    for (var j = 0; j < list.goods.length; j++) {
+                        for (var pIndex = 0; pIndex < list.goods[j].goods_list.length; pIndex++) {
+                            HSMiniCart.RenderGive(list, list.goods[j].goods_list[pIndex], k,isRender,checklist);
+                            k = k + 1;
+                        }
+                    }
+                }
+            }
+        }
+
+        //满减
+        var multiMainItemList = Enumerable.From(result.list)
+            .Where(function (x) { return x.full_act_type != "12" && "12345".indexOf(x.full_act_type) > -1; })
+            .ToArray();
+
+        var li;
+        if (multiMainItemList != null &&
+            multiMainItemList.length > 0) {
+
+            var headtpye;
+
+            for (var i = 0; i < multiMainItemList.length; i++) {
+                list = multiMainItemList[i];
+                k = 0;
+                headtpye = 2; //未添加满减标签)
+                if (list.goods != null) {
+                    for (var j = 0; j < list.goods.length; j++) {
+                        if (list.goods[j].item_type != "2") {
+                            for (var h = 0; h < list.goods[j].goods_list.length; h++) {
+                                HSMiniCart.RenderFullNormal(list, list.goods[j].goods_list[h], k, isRender,checklist);
+                                k++;
+                                headtpye = 3;//已添加满减标签
+                            }
+                        }
+                    }
+                    //任选
+                    var rSelectList = Enumerable.From(list.goods)
+                        .Where(function (x) { return x.item_type == "2" })
+                        .ToArray();
+
+                    for (var index = 0; index < rSelectList.length ; index++) {
+                        HSMiniCart.RenderSelectActContent(list, rSelectList[index].goods_list, headtpye, isRender,checklist);
+                    }
+                }
+            }
+        }
+
+        //新人满赠
+        var multiMainItemList = Enumerable.From(result.list)
+            .Where(function (x) { return x.full_act_type == "17"; })
+            .ToArray();
+
+        var li;
+        if (multiMainItemList != null &&
+            multiMainItemList.length > 0) {
+            for (var i = 0; i < multiMainItemList.length; i++) {
+                list = multiMainItemList[i];
+                k = 0;
+                if (list.goods != null) {
+                    for (var j = 0; j < list.goods.length; j++) {
+                        if (list.goods[j].item_type != "2") {
+                            for (var h = 0; h < list.goods[j].goods_list.length; h++) {
+                                HSMiniCart.RenderNewPerson(list, list.goods[j].goods_list[h], k, isRender, checklist);
+                                k++;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        if (!isRender) {
+            //底部
+            if (result.list != null && result.list.length > 0) {
+                var myCar = $('.myCart');
+                var foot = myCar.find('.foot');
+                foot.empty();
+                foot.show();
+                var div1 = $('<div class="cart-account">').appendTo(foot);
+                $('<span class="cart-selected middle_gray">已选<span>' + result.checked_count + '</span>件</span>').appendTo(div1);
+                $('<span class="cart-saving deep_gray">已省：<span>&yen;' + (parseFloat(result.youhui_price) + parseFloat(result.manjian_youhui_price)).toFixed(2) + '</span></span>').appendTo(div1);
+                $('<span class="cart-allPrize red">合计：<span>&yen;' + result.real_price + '</span></span>').appendTo(div1);
+                $('<a href="' + hs.domain.cart + '" target="_blank"><div class="com-btn com-btn-red cart-btn">去购物车中结算</div></a>').appendTo(foot);
+            }
+        }
+        else {
+            if (result.list != null && result.list.length > 0)
+            {
+                $('.cart-selected').html('已选<span>' + result.checked_count + '</span>件');
+                $('.cart-saving').html('已省：<span>&yen;' + (parseFloat(result.youhui_price) + parseFloat(result.manjian_youhui_price)).toFixed(2) + '</span>');
+                $('.cart-allPrize').html('合计：<span>&yen;' + result.real_price + '</span>');
+            }
+        }
+
+        if (!isRender) {           
+            HSMiniCart.registerCheckAllEvents();
+            
+        }
+        //单选注册放在重写input的时候
+       // HSMiniCart.registerCheckEvents();
+
+        HSMiniCart.CheckInit();
+
+        //console.log('1');
+        if (right.openState)
+            right.jsScroll();
+    },
+
+    //获取迷你购物车数量
+    GetMiniCartCount: function () {
+        $.ajax({
+            type: "GET",
+            //url:"http://cart.taolaigo.com/handler/cart.ashx?cmd=9&r="+Math.random(),
+            url: hs.domain.cart + "handler/cart.ashx?cmd=9&r=" + Math.random(),
+            dataType: "jsonp",
+            async: false,
+            jsonp: "callback",
+            crossDomain: true,
+            success: function (data) {
+                if (data.Code === "10002") {
+                    $(".guide-cart-num").text(data.Data);
+                    $(".num").text(data.Data);
+                }
+                else {
+                    $(".guide-cart-num").text(0);
+                    $(".num").text(0);
+                }
+            }
+        });
+    },
+
+    //获取迷你购物车
+    GetMiniCart: function () {
+        if (!$("#selectAll")[0]) {
+            //无右侧栏
+        }
+        else {
+            try {
+                $.ajax({
+                    type: "GET",
+                    //url:"http://cart.taolaigo.com/handler/cart.ashx?cmd=11&r=" + Math.random(),
+                    url: hs.domain.cart + "handler/cart.ashx?cmd=11&r=" + Math.random(),
+                    dataType: "jsonp",
+                    async: false,
+                    jsonp: "callback",
+                    crossDomain: true,
+                    success: function (data) {
+                        if (data.Code === "10002") {
+                            HSMiniCart.GetMiniCartCount();
+                            var myCar = $('.myCart');
+                            var foot = myCar.find('.foot');
+                            $(".m_t_50").attr("src", hs.domain.skin + "image/imgv4/right-myCart-empty.png");
+                            if (data.Data.all_sku_count === "0") {
+                                $(".m_t_50").show();
+                                foot.hide();
+                            }
+                            else {
+                                result = data.Data;
+                                $(".m_t_50").hide();
+                                foot.show();
+                                HSMiniCart.RenderMiniCart(result, false);//false表示正常加载
+                            }
+                        }
+                        //服务器异常
+                        //ele.parent().find("").hide();
+                        //right.close();
+                    }
+                });
+            }
+            catch (ex) {
+            }
+        }
+    },
+
+    /* 勾选事件    */
+    renderMiniCartContent: function (checklist) {
+        try {
+            $.ajax({
+                type: "GET",
+               // url: "http://cart.taolaigo.com/handler/cart.ashx?cmd=11&r=" + Math.random(),
+                url: hs.domain.cart + "handler/cart.ashx?cmd=11&r=" + Math.random(),
+                dataType: "jsonp",
+                async: false,
+                jsonp: "callback",
+                crossDomain: true,
+                success: function (data) {
+                    if (data.Code === "10002") {
+                        //alert('重写MINI');
+                        result = data.Data;
+                        HSMiniCart.RenderMiniCart(result, false, checklist);// true表示勾选事件触发，只修改价格
+                    }
+                }
+            });
+        }
+        catch (ex) {
+        }
+    },
+
+    SelectCartItem: function (ele) {
+       // ele.attr("disabled", "disabled");
+        var cartMainCode = ele.attr("cartmaincode");
+        var detailCode = ele.attr("cartdetailcode");
+        var goodactCode = ele.attr("goodactcode");
+        var list = [{ MainCartCode: cartMainCode, DetailItemCode: detailCode, GoodActCode: goodactCode }];
+        var jsonStr = JSON.stringify(list);
+        var isChecked = ele[0].checked ? 1 : 0;
+        // alert(isChecked);
+        $.ajax({
+            type: "POST",
+            url: hs.domain.cart + "handler/cart.ashx?cmd=5&t=" + Math.random(),
+            data: { item_list: jsonStr, is_selected: isChecked },
+            dataType:'JSONP',
+            contentType: "application/x-www-form-urlencoded; charset=utf-8",
+
+            success: function (data) {
+                if (data.Code === "10002") {
+                    //重新加载迷你购物车
+                    //alert('单选');
+                    HSMiniCart.renderMiniCartContent(list);
+                }
+            }
+        });
+    },
+
+    //注意给对象
+    CheckAllList: function (ele) {
+       // ele.attr("disabled", "disabled");
+        isChecked = ele[0].checked ? 1 : 0;
+        var checkList = $(":checkbox[cartmaincode]");
+        var list = new Array();
+        var itemJson;
+        for (var i = 0; i < checkList.length; i++) {
+            // if ($(checkList[i]).attr("isOutOfStock") == "0") {
+            itemJson = { MainCartCode: $(checkList[i]).attr("cartmaincode"), DetailItemCode: $(checkList[i]).attr("cartdetailcode"), GoodActCode: $(checkList[i]).attr("goodactcode") };
+            list.push(itemJson);
+            // }
+        }
+        var jsonStr = JSON.stringify(list);
+        $.ajax({
+            type: "POST",
+            url: hs.domain.cart + "handler/cart.ashx?cmd=5&t=" + Math.random(),
+            data: { item_list: jsonStr, is_selected: isChecked },
+            dataType: 'JSONP',
+            contentType: "application/x-www-form-urlencoded; charset=utf-8",
+            success: function (data) {
+                if (data.Code === "10002") {
+                    //重新加载
+                    //alert('全选');
+                    HSMiniCart.renderMiniCartContent(list);
+                   // ele.removeAttr("disabled");
+                }
+            }
+        });
+    },
+
+    CheckInit: function () {
+       // alert('初始化勾选框');
+        $(":checkbox[cartmaincode]").each(function () {
+            $(this)[0].checked = $(this).attr("isSelected") == "1" ? true : false;
+        });
+        var checkList = $(":checkbox[cartmaincode]");
+        var isAllChecked = true;
+        var j = 0;
+        for (var i = 0; i < checkList.length; i++) {
+            //if ($(checkList[i]).attr("isOutOfStock") == "0") {
+            if (!checkList[i].checked) {
+                isAllChecked = false;
+
+                break;
+            }
+            //} else {
+            //    j++;
+            //}
+        }
+        //if (checkList.length == j) { // 所有明细都超过库存
+        //   isAllChecked = false;
+        //}
+        // $("#chkTopCheckALL")[0].checked = isAllChecked;
+        $("#selectAll")[0].checked = isAllChecked;
+    },
+
+    registerCheckEvents: function (checkbox) {
+        //alert('注册单选事件');
+        checkbox.click(function () {
+            //  alert('进入单选');
+            var ele = $(this);
+            HSMiniCart.SelectCartItem(ele);
+        }); 
+    },
+
+    registerCheckAllEvents: function () {
+      //  alert('注册全选事件');
+        $("#selectAll").click(
+            function () {
+              //  alert('进入全选');
+                HSMiniCart.CheckAllList($(this));
+        });
+    }
+}

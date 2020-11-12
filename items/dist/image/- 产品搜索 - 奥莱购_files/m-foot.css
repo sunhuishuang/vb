@@ -1,0 +1,54 @@
+/*Crystal77 2014-07-01*/
+/*reset style*/
+html{/*overflow-y:scroll;overflow-x:hidden;*/_background-image: url(about:blank); _background-attachment: fixed;}
+body{color:#333; background:#fff}
+body,h1,h2,h3,h4,h5,h6,hr,p,blockquote,dl,dt,dd,ul,ol,li,pre,form,fieldset,legend,button,input,textarea,th,td{margin:0;padding:0;}
+body,button,input,select,textarea{font:12px/1.5 arial,simsun}
+h1,h2,h3,h4,h5,h6{font-size:100%}
+address,cite,dfn,em,var,i{font-style:normal}
+code,kbd,pre,samp{font-family:courier new,courier,monospace}
+small{font-size:12px}
+ul,ol{list-style:none}
+a{text-decoration:none; color:#333;outline: none;}
+sup{vertical-align:text-top}
+sub{vertical-align:text-bottom}
+legend{color:#000}
+fieldset,img{border:0}
+img,object,button,input,select{vertical-align:middle}
+table{border-collapse:collapse;border-spacing:0}
+
+/*站底-快捷导航*/
+.foot-ccc{background: #fff;border-top:1px solid #eee;margin-top: 20px;}
+.foot-line-b{border-bottom: 1px solid #eee; height:220px; }
+.foot-menu{width:1020px;margin:0 auto; margin-top: 20px; }
+.foot-menu dl{ float: left; margin-right:135px;}
+.foot-menu dl dt{font-size:18px;line-height:30px;font-family: Microsoft YaHei,simhei;font-weight:500; margin-bottom: 10px;}
+.foot-menu dl dd{line-height: 25px;}
+.foot-menu dl dd a{color:#999;}
+.foot-menu dl dd a:hover{color:#e4393c;}
+.foot-menu dl.f-kf{ margin-right:0px;}
+.foot-menu dl dd.f-tel{font-size:25px;color:#e4393c;font-family: Microsoft YaHei,simhei;font-weight:500; }
+.foot-menu dl dd.f-time{font-size:15px;font-family: Microsoft YaHei,simhei;font-weight:500; margin-top: 10px;}
+/*
+.foot-menu dl dd.f-seek a{width:122px; height: 27px;background: url(../../../image/no-line.png);margin-top: 10px;display: block;}
+.foot-menu dl dd.f-seek-on a{width:122px; height: 27px;background: url(../../../image/on-line.gif);margin-top: 10px;display: block;}
+*站底-版权
+*/
+.foot-copy{width:1070px;margin: 0 auto;margin-top: 15px; }
+.foot-copy-a{}
+.foot-copy-a ul{margin-left:300px;}
+.foot-copy-a ul li{float:left; margin-left:10px;color:#999;}
+.foot-copy-a ul li a{color: #333;}
+.foot-copy-a ul li a:hover{color: #e4393c;}
+.foot-copy-a p{ text-align: center; margin-top: 10px;}
+.foot-copy-a p span{margin: 0 10px;}
+.foot-copy-a p a{color: #147bc8;}
+.foot-copy-a p a:hover{color: #e4393c;}
+.foot-copy-a p.f-copy-zj{margin-left:100px;}
+.foot-copy-a p.f-copy-zj a{float: left; margin-right: 10px;}
+.foot-copy-a p.f-copy-zj a.f-img01{width: 112px; height: 40px;background: url(../../../image/xxtico.png);background-position: -10px -506px;margin-top: 10px;display: block;}
+.foot-copy-a p.f-copy-zj a.f-img02{width: 112px; height: 40px;background: url(../../../image/xxtico.png);background-position: -145px -506px;margin-top: 10px;display: block;}
+.foot-copy-a p.f-copy-zj a.f-img03{width: 112px; height: 40px;background: url(../../../image/xxtico.png);background-position: -280px -506px;margin-top: 10px;display: block;}
+.foot-copy-a p.f-copy-zj a.f-img04{width: 112px; height: 40px;background: url(../../../image/xxtico.png);background-position: -11px -553px;margin-top: 10px;display: block;}
+.foot-copy-a p.f-copy-zj a.f-img05{width: 136px; height: 40px;background: url(../../../image/xxtico.png);background-position: -146px -553px;margin-top: 10px;display: block;}
+

@@ -1,0 +1,65 @@
+    $(function() {
+        $('#wrap1').marquee({
+            auto: false,/*false不自动滚*/
+            speed: 1000,
+            showNum: 5,
+            stepLen: 2,
+            prevElement: $('#prev1'),
+            nextElement: $('#next1')
+        });
+    })
+
+$(function(){
+    			ifval();
+    			
+    	      })
+
+function ifval() {
+
+
+	var p=$(".p4");
+
+	    var a=$(".valc-n");
+	    var b=$(".p4-jg03");
+	    var delcon=$(".delcon");
+
+
+	   // alert($(b[0]).html()+"    "+ $(b[1]).html());
+
+		$(".valc-n").each(function(index,ele){
+
+	//alert("a:"+$(a[index]).width() +"b:"+$(b[index]).width()+"a+b:"+	($(a[index]).width()+$(b[index]).width()));
+
+   //alert($(a[index]).width()+ $(b[index]).width())
+ 
+
+ var mj_length=0;
+
+          if($(p[index]).find(".p4-jg03").length)
+              {
+
+					mj_length=$(p[index]).find(".p4-jg03").width();
+					//alert( "第"+(index+1)+"个有满减");              	
+              }
+              
+
+
+		 	if($(a[index]).width()+mj_length>=210)
+		 		{
+		 			$(ele).find(".delcon").hide();
+		 		
+		 			//$(delcon[index]).hide();
+		        }
+		 	else if($(a[index]).width()+mj_length< 210)
+
+				{
+					$(ele).find(".delcon").show();
+				}	
+
+		})
+   }
+
+
+
+
+    

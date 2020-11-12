@@ -1,0 +1,107 @@
+{
+  "id": "2187684",
+  "name": "我",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon",
+  "description": "可用",
+  "glyphs": [
+    {
+      "icon_id": "135136",
+      "name": "足迹",
+      "font_class": "zuji",
+      "unicode": "e600",
+      "unicode_decimal": 58880
+    },
+    {
+      "icon_id": "286292",
+      "name": "导航-分类",
+      "font_class": "daohangfenlei",
+      "unicode": "e606",
+      "unicode_decimal": 58886
+    },
+    {
+      "icon_id": "435987",
+      "name": "我的优惠卷",
+      "font_class": "wodeyouhuijuan",
+      "unicode": "e7ee",
+      "unicode_decimal": 59374
+    },
+    {
+      "icon_id": "677608",
+      "name": "用户",
+      "font_class": "yonghu",
+      "unicode": "e639",
+      "unicode_decimal": 58937
+    },
+    {
+      "icon_id": "774382",
+      "name": "用户",
+      "font_class": "yonghu1",
+      "unicode": "e61e",
+      "unicode_decimal": 58910
+    },
+    {
+      "icon_id": "778509",
+      "name": "密码",
+      "font_class": "mima",
+      "unicode": "e622",
+      "unicode_decimal": 58914
+    },
+    {
+      "icon_id": "1079362",
+      "name": "安全",
+      "font_class": "anquan",
+      "unicode": "e63e",
+      "unicode_decimal": 58942
+    },
+    {
+      "icon_id": "1191001",
+      "name": "返回顶部",
+      "font_class": "fanhuidingbu",
+      "unicode": "e70b",
+      "unicode_decimal": 59147
+    },
+    {
+      "icon_id": "1314337",
+      "name": "购物车",
+      "font_class": "gouwuche",
+      "unicode": "e602",
+      "unicode_decimal": 58882
+    },
+    {
+      "icon_id": "1330571",
+      "name": "微博",
+      "font_class": "weibo",
+      "unicode": "e73c",
+      "unicode_decimal": 59196
+    },
+    {
+      "icon_id": "5270852",
+      "name": "收 藏-产品详情",
+      "font_class": "shoucang",
+      "unicode": "e613",
+      "unicode_decimal": 58899
+    },
+    {
+      "icon_id": "8783396",
+      "name": "客服",
+      "font_class": "dibudaohanglan-",
+      "unicode": "e630",
+      "unicode_decimal": 58928
+    },
+    {
+      "icon_id": "9557791",
+      "name": "购物车",
+      "font_class": "gouwuche1",
+      "unicode": "e63c",
+      "unicode_decimal": 58940
+    },
+    {
+      "icon_id": "12443500",
+      "name": "微信",
+      "font_class": "sign_wechat",
+      "unicode": "e636",
+      "unicode_decimal": 58934
+    }
+  ]
+}

@@ -1,0 +1,119 @@
+
+//左侧类目切换效果
+var last_search_categoriesClick = null;
+$(function () {
+    var search_categories = $("#search_categories");
+    var dls = $("dl", search_categories);
+    for (var i = 0, dl; dl = dls[i]; i++) {
+        var dt = $("dt", dl)[0];
+        $(dt).attr("id", "search_categories_dt_" + (Math.random() * 100));
+        $(dt).bind("click", function (dl) {
+            var p = $(this).parent();
+            if (last_search_categoriesClick != null && $(last_search_categoriesClick).attr("id") != $(this).attr("id")) {
+                //                    var dds = $("dd", last_search_categoriesClick.parent);
+                //                    for (var i = 0, dd; dd = dds[i]; i++) {
+                //                        $(dd).css("display", "none");
+                //                    }
+            }
+            last_search_categoriesClick = this;
+            var b = $("b", last_search_categoriesClick)[0];
+            if ($(b).hasClass("src_fold")) {
+                $(b).removeClass("src_fold");
+                $(b).addClass("src_unfold");
+            }
+            else if ($(b).hasClass("src_unfold")) {
+                $(b).removeClass("src_unfold");
+                $(b).addClass("src_fold");
+            }
+            var dds = $("dd", p);
+            var tmpDisplay = 'none';
+            if ($(dds[0]).css("display") == 'none') {
+                tmpDisplay = 'block';
+            }
+            for (var i = 0; i < dds.length; i++) {
+                $(dds[i]).css("display", tmpDisplay);
+            }
+        });
+    }
+});
+/*产品图*/
+function setWareImgBackUp() {
+    //var $div_li = $("#xt dd");
+    var $div_li = $(".src-dl-thumbnail dd");
+    $div_li.mouseover(function () {
+        $(this).addClass("b-select")
+               .siblings().removeClass("b-select");
+        var index = $div_li.index(this);
+        var $img = $("#pro-z dd a img").eq(index);
+        try {
+            var imgUrl = $img.attr("originalx");
+            if (imgUrl != undefined) {
+                if (imgUrl.indexOf("http://") < 0) {
+                    imgUrl = hs.domain.getimg() + "/group1/" + imgUrl;
+                }
+                $img.attr("src", imgUrl);
+            }
+        } catch (e) {
+
+        }
+
+        var $aimg = $("#pro-z dd a").eq(index);
+        $($(this).parent().parent().parent().next().next().children()[0]).attr("href", $aimg.attr("href"));
+        try
+        {
+            $("a", $(this).parent().parent().parent().next().next().next()).attr("id", "sc" + $aimg.attr("id").substring(3));
+        }catch(e)
+        {
+        }
+        $("#pro-z dd")
+                .eq(index).show()
+                .siblings().hide();
+    })
+};
+
+/*产品图*/
+function setWareImg() {
+    //var $div_li = $("#xt dd");
+    var div_li = $(".src-dl-thumbnail dd");
+    $(div_li).mouseover(function () {
+        $(this).addClass("b-select")
+               .siblings().removeClass("b-select");
+        var index = $(this).index();
+        var img = $($(this).parent().parent().parent().prev().children()[0]).find("img")[index];//$("#pro-z dd a img").eq(index);
+        try {
+            var imgUrl = $(img).attr("originalx");
+            if (imgUrl != undefined) {
+                if (imgUrl.indexOf("http://") < 0) {
+                    imgUrl = hs.domain.getimg() + "/group1/" + imgUrl;
+                }
+                $(img).attr("src", imgUrl);
+            }
+        } catch (e) {
+
+        }
+
+        var aimg = $($(this).parent().parent().parent().prev().children()[0]).find("a")[index];
+        $($(this).parent().parent().parent().next().next().children()[0]).attr("href", $(aimg).attr("href"));
+        try {
+            $("a", $(this).parent().parent().parent().next().next().next()).attr("id", "sc" + $(aimg).attr("id").substring(3));
+        } catch (e) {
+        }
+        $($($(this).parent().parent().parent().prev().children()[0]).find("dd")[index]).show().siblings().hide();
+    })
+};
+
+//$(function(){
+//    //var $div_li = $("#xt dd");
+//    var $div_li = $(".src-dl-thumbnail dd");
+//       $div_li.mouseover(function(){
+//           $(this).addClass("b-select")            
+//                  .siblings().removeClass("b-select");  
+//           var index = $div_li.index(this);
+//           var $img = $("#pro-z dd a img").eq(index);
+//           $img.attr("src", $img.attr("original"));
+//           $("#pro-z dd")      
+//                   .eq(index).show()
+//                   .siblings().hide();
+//       })
+//  });
+

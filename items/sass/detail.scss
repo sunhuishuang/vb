@@ -1,0 +1,80 @@
+#prod {
+    img {
+        display: block;
+        border: none;
+    }
+    position: relative;
+    width: 300px;
+    border: 1px solid #cecece;
+    // 放大镜的小图
+    #midArea {
+        width: 300px;
+        height: 300px;
+        img {
+            width: 300px;
+            height: 300px;
+        }
+        #zoom {
+            display: none;
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            background-color: yellow;
+            opacity: 0.3;
+            cursor: move;
+        }
+    }
+    //放大镜大图
+    #bigArea {
+        display: none;
+        position: absolute;
+        left: 400px;
+        top: -1px;
+        width: 400px;
+        height: 400px;
+        overflow: hidden;
+        border: 1px solid #cecece;
+        z-index: 99;
+        img {
+            position: absolute;
+            width: 800px;
+            height: 800px;
+        }
+    }
+    // 详情
+    #explan {
+        position: absolute;
+        left: 300px;
+        top: -1px;
+        width: 300px;
+        height: 300px;
+        overflow: hidden;
+        p {
+            margin-left: 30px;
+            width: 350px;
+        }
+        span {
+            margin-left: 30px;
+            width: 250px;
+            height: 30px;
+            font-size: 30px;
+            background: #cecece
+        }
+        #reduce {
+            margin-left: 30px;
+            margin-top: 20px;
+        }
+        #ipt {
+            width: 30px;
+        }
+        #addCart {
+            margin-left: 30px;
+            width: 250px;
+            height: 30px;
+            background: #f12345;
+            border: none;
+            border-radius: 5px;
+            color: #fff;
+        }
+    }
+}

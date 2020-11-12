@@ -1,0 +1,333 @@
+.ser-bg{background:url(../../../image/imgv3/men-bg.png) no-repeat;}
+.sh-icon{background:url(../../../image/imgv3/sh-icon.png) no-repeat;}
+.s{width:1202px;margin: 0 auto;margin-top:20px;overflow:hidden;}
+.shot{width:1202px;margin: 0 auto;margin-top:20px;overflow:hidden;}
+.crumb{color: #666; margin-bottom:10px;}
+.crumb strong{color: #fb5053;padding: 0px 5px 8px;}
+.sv3{width:1200px;margin:0 auto;margin-bottom:10px;     }
+.left{float:left;width:190px;} 
+.sea-left{float:left;width:190px;overflow:hidden; }
+.sea-left-1{float:left;width:188px;padding-bottom:20px;border:1px solid #e6e6e6;}
+.sea-left-t1{height:40px;background:#fafafa;border-bottom:1px solid #e6e6e6;position:relative;text-align:center;line-height:40px;  color:#c71417;font-weight:bold;}
+.sea-left-t1 em{color:#666;margin-left:4px;}
+.sea-left-t1 span.pt-hot{width:37px;height:36px;display:block;position:absolute;top:0px;right:0px;background-position:-960px -845px;}
+.sea-left-t1 span.pt-news{width:37px;height:36px;display:block;position:absolute;top:0px;right:0px;background-position:-1025px -610px;}
+.sea-left-con ul{width:140px;margin:0 auto;overflow:hidden;margin-top:15px;}
+.sea-left-con ul li a img{width:140px;height:140px;}
+.sea-left-con ul li.left-conli-txt a{color:#333;height:20px;display:block;line-height:20px;margin-top:10px;white-space:nowrap;text-overflow:ellipsis; -o-text-overflow:ellipsis; overflow: hidden;     }
+.sea-left-con ul li.left-conli-txt a:hover{color:#ff3344;}
+.sea-left-con ul li.left-conli-val{color:#ff3344;font-weight:bold;height:20px;overflow:hidden;display:block;line-height:20px;margin-top:5px;text-align:center;font-size:16px; } 
+
+#div_for_search_list{ overflow: visible !important; }
+
+/*热门推荐*/
+.s-hotv3{width:1200px;height:150px;margin:0 auto;border:1px solid #e6e6e6;overflow:hidden;}
+.hotv3-lf{float:left;width:40px;height:150px;background:#fafafa;border-right:1px solid #e6e6e6;}
+.hotv3-lf ul{overflow:hidden; }
+.hotv3-lf ul li{text-align:center;font-size:14px;font-weight:bold;color:#666;}
+.hotv3-rt{float:left;}
+.hotv3-rt ul li{float:left;margin-top:10px;margin-left:15px; }
+.hotv3-rtlia{width:130px;height:130px;border:1px solid #eaeaea;float:left;    }
+.hotv3-rtlib{width:130px;float:left;height:130px;margin-left:10px;  }
+.hotv3-rtlib-tit{height:52px;overflow:hidden;}
+.hotv3-rtlib-tit a{color:#333; }
+.hotv3-rtlib-tit a:hover{color:#ff3243; }
+.hotv3-rtlib-val{height:30px;line-height:30px;color:#ff3243;}
+.hotv3-rtlib-btn a{width:80px;height:30px;display:block;line-height:30px;background:#e6e6e6;text-align:center;color:#656565;       margin-top:10px; }
+
+.search_categories_filter{ width:209px; }
+        .search_categories_filter_title{background:#f7f7f7;border-top:2px solid #999;border-left:1px solid #ddd;border-right:1px solid #ddd; line-height:35px; height:35px; padding-left:8px; overflow:hidden; }
+        .search_categories_filter_title h3{ font-weight:700; font-size:14px; color:#333; font-family: Microsoft YaHei,simhei}
+        .search_categories_filter_list{ position:relative; width:206px;border:1px solid #ddd; border-top:0;}    
+        #search_categories{ font-size:12px; width:208px;}
+        #search_categories li{overflow:hidden;}
+        #search_categories dl{border-right:1px solid #ddd;}
+        #search_categories dt{ background:#f7f7f7; border-top:1px solid #ddd; cursor:pointer; height:30px; overflow:hidden; padding:3px 0 5px 35px; font-size:14px;margin:0;line-height: 30px;}
+        #search_categories dd{ display:block; padding:2px 0 2px 35px; background:#fff; line-height:30px;}
+        #search_categories a:hover, #search_categories a:active, #search_categories a:hover span, #search_categories dd.selected a, #search_categories dd.selected span{ color:#e24536!important; text-decoration:none!important;}
+        #search_categories a:link, #search_categories a:visited{text-decoration:none!important;}
+        #search_categories span{ color:#999; font:12px "microsoft yahei";}
+        .src_fold,.src_unfold{ position:absolute; left:14px;margin-top:6px; *margin-top:3px; height:9px; line-height:0; width:16px;height: 16px; background:url('../../../image/sear-lei.png') no-repeat;background-position:-59px -28px;}
+        .src_unfold{ background:url('../../../image/sear-lei.png') no-repeat;background-position:-42px -28px;}
+
+.right{float:right;width:1000px;overflow: hidden; /*border: 1px solid #f00;*/}
+.s-related{height:40px;background:#fafafa;line-height:40px;padding-left:10px;border-bottom:1px solid #eaeaea; }
+.shv3-t{float:left;position:relative;padding-left:25px;}
+.shv3-t i{width:22px;height:22px;display:block;position:absolute;top:10px;left:0px;background-position:-184px -619px;}
+.shv3-t span{margin:0px 5px; }
+.shv3-t span.xuan-lei{font-size:12px;}
+.shv3-t span.xuan-lei strong{color:#fb5053;margin-left:5px; }
+.shv3-t span.xuan-shu{color:#fb5053;}
+
+.shv3-l{float:left;position: relative;z-index:15;}
+.shv3-menu{position:relative;float:left;  }
+.shv3-menu-a{float:left;height:25px;line-height:25px;border:1px solid #e6e6e6;margin-top:8px;padding-left:10px;padding-right:22px;position:relative;margin-left:10px;background:#fff;z-index:15; }
+.shv3-menu-a a{color:#656565; }
+.shv3-menu:hover .shv3-menu-a{border:1px solid #c81417;border-bottom:none;height:27px; }
+.shv3-menu:hover .shv3-menu-a a{color:#333; }
+.shv3-menu-a i{width:10px;height:10px;display:block;background-position:-143px -625px;position:absolute;top:10px;right:5px;       }
+.shv3-menu:hover .shv3-menu-a i{background-position:-103px -625px;}
+.shv3-lcon{position:absolute;top:35px;left:10px;width:500px;border:1px solid #c81417;background:#fff;z-index:10;padding:10px;    display:none;}
+.shv3-menu:hover .shv3-lcon{display:block;}
+.shv3-lcon ul li{float:left;height:25px;line-height:25px;margin-top:2px;margin-right:15px; }
+.shv3-lcon ul li a:hover{color:#c81417;}
+
+.shv3-is{float:left;line-height:40px;margin-left:15px;  }
+
+/*搜索提示*/
+.suggest_result{z-index: 99;display: none;width:392px;position: absolute;margin-top:2px;background:none repeat scroll 0 0 #fff;border:1px solid #e4393c;box-shadow:0 0 5px #999;float:left;}
+.fl{float:left;}
+.fr{float:right;color:#aaa;}
+.red{color:#fb5053;}
+.search .suggest_result {background: none repeat scroll 0 0 #f9f7f2;border: 1px solid #eceae6;display: none;left: 5px;position: absolute;top: 32px;width: 411px;}
+.search .suggest_word {display: block;height: 24px;line-height: 24px;overflow: hidden;padding: 0 10px;text-decoration: none !important;white-space: nowrap;}
+.search .suggest_word:hover {background: none repeat scroll 0 0 #fff6e5;}
+.search .suggest_word .fr {color: #8e8e8e;}
+
+/*搜索条件*/
+.s-lei{position:relative;/*overflow:hidden;*/margin-bottom:10px;/*border:1px solid #f00;*/}
+.s-lcon{/*overflow:hidden;*/border: 1px solid #e5e5e5;position:relative;border-bottom:none; }
+.s-mtt{width:1200px;border-left: 1px solid #fff;text-align:center;}
+.s-mtt span{overflow:hidden;position:relative;text-align:center;line-height:25px;cursor:pointer;width:333px;top:-2px;padding-bottom:5px;color:#999;height:25px;background:url(../../../image/imgv3/sea.jpg) no-repeat;display:block;margin:0 auto;     }
+.s-mtt span em{width:300px;display:block;margin:0 auto;overflow:hidden;  }
+
+/*plat add end*/
+.g-tab{float:left;width:750px;display: block;overflow:hidden;border:1px solid #fffdee ;}
+.g-tab dl dd.s-p01{width:80px;}
+.g-tab dl dd.g-tab02{color:#164a96;padding:0 5px;cursor: pointer;}/*默认*/
+.g-tab dl dd.g-tab01{background:#4598D2;color:#fff;padding:0 5px;cursor: pointer;}/*选中*/
+.g-tit{float: left;width:80px;text-align: right;line-height:35px;color:#333;background:#fafafa;  }
+.s-zjpp{position:absolute;top:2px;right:0px;}
+.s-zjpp a{float: left;margin-right: 10px;color: #164a96;line-height: 25px;}
+a.s-zjpp-01{padding:0px 8px;height:25px;background: #f8f7f5;border: 1px solid #ddd;display: block;text-align: center;line-height:20px; color: #164a96;}
+
+#divTopHot{margin-top:20px; }
+a.s-jgtj{border:1px solid #ddd;text-align: center;background: #ccc;display: block;height:25px;line-height:25px;width:40px;margin-top:3px;  }
+/*plat add start 2014-08-09*/
+.s-zjpp span{float: left;margin-right: 10px;color: #164a96;line-height:32px;cursor:pointer;}
+span.s-zjpp-01{padding:0px 8px;height: 20px;background: #f8f7f5;border: 1px solid #e5e5e5;display: block;text-align: center;line-height:20px; color: #164a96;cursor:pointer;margin-top:5px; }
+/*plat add end*/
+.s-lei-cond{overflow:hidden;margin-top: 10px;position:relative;height:auto;}
+.s-lei-cond dl{float:left;width:750px;display:block;overflow:hidden;}
+.s-lei-cond dl dd{float: left;margin-left:10px;margin-top:3px;line-height: 25px;}
+.s-lei-cond a{line-height:25px;display:block;}
+.s-lei-p{overflow:hidden;position:relative;height:35px;border-bottom: 1px solid #e6e6e6;}
+/*plat add start 2014-08-12*/
+.s-lei-p .g-tab{display:none;}
+.s-lei-p dl{float:left;width:1000px;display:block;overflow:hidden;}
+.s-lei-p dl dd{float: left;margin-left:20px;margin-top:1px;line-height: 25px;white-space:nowrap;color:#666; }
+.s-lei-p a{line-height:35px;display:block;}
+.s-p01 a{color:#666;}
+.s-p01 a:hover{color:#fb5053;}
+/*搜索更多*/
+.s-lei-more {_zoom:1;  overflow:hidden; background:#fffdee;border:1px solid #edd188;border-left:none;border-right:none;padding-top:15px;padding-bottom:15px;height:auto;}
+/*plat add start 2014-08-12*/
+.s-lei-more .g-tab{display:block;width:850px;}
+/*plat add end*/
+.s-lei-more dl dd{float: left;margin-left:10px;margin-top:3px;line-height:25px;}
+/*多选-更多*/
+#brandTagSelect{margin-left:auto;}
+.sh-duo-brd dl{margin-left:100px;}
+.sh-duo{}
+.sh-duo dd.s-p01{width:100px;overflow:hidden;}
+.sh-duo dd.fir-more{width:100px;overflow:hidden;}
+.sh-duo dd.selected{width:100px;overflow:hidden;}
+.tab-ddx{float: left;height:14px;line-height:normal;margin-top: 14px;margin-left:10px;}
+.tab-dd{padding-top:11px;}
+.tab-dd a{float: left;padding-left:18px;line-height: 14px;height: 14px;background: url('../../../image/sear-lei.png') no-repeat -70px -13px;color: #e4393c;}
+.fir-more a {float:left;height: 14px;line-height: 14px;text-decoration: none;overflow: hidden;white-space: nowrap;font-family: verdana;color: #1e55ab;padding-left:18px;background: url('../../../image/sear-lei.png') no-repeat  -70px 1px transparent;}
+.fir-more a:hover{color:#fb5053;background: url('../../../image/sear-lei.png') no-repeat  -70px -95px transparent;}
+.selected a{float:left;height: 14px;line-height: 14px;text-decoration: none;overflow: hidden;white-space: nowrap;font-family: verdana;color: #1e55ab;padding-left:18px;background: url('../../../image/sear-lei.png') no-repeat  -70px -13px transparent;}
+.selected a:hover{background: url('../../../image/sear-lei.png') no-repeat  -70px -13px transparent;color:#fb5053;}/*更多内容选中控制*/
+/*plat add start 2012-08-12*/
+.selectedBrand a{float: left;height: 14px;line-height: 14px;text-decoration: none;overflow: hidden;white-space: nowrap;font-family: verdana;color: #e4393c;padding-left:18px;background: url('../../../image/sear-lei.png') no-repeat  -70px -13px transparent;}/*更多内容选中控制*/
+.selectedBrand a:hover{float:left;padding-left:18px;line-height: 14px;height: 14px;background: url('../../../image/sear-lei.png') no-repeat -70px -13px;color: #e4393c;}
+/*plat add end*/
+.v-btns{padding-bottom:10px;width:155px;margin:0 auto;}/*更多按钮*/
+.btn-red{float:left;margin-top:20px;display:block;width:50px;height:25px;line-height:25px;border:1px solid #fb5053;border-radius:2px;text-align:center;cursor:pointer;color:#fff;background:#fb5053;margin-right:10px;}
+.btn-gray {float:left;margin-top:20px;display:block;width:50px;height:25px;line-height:25px;border:1px solid #ddd;border-radius:2px;text-align:center;cursor:pointer;color:#fff;background:#f7f7f7;color:#333;}
+.sear-bbk{cursor:pointer;border:1px solid #ddd;}/*外边框*/
+.sear-bbk:hover{cursor:pointer;border:1px solid #c81417;}/*外边框*/
+.sear-bbkxz{cursor:pointer;border:2px solid #fb5053;}/*更多 选中*/
+.s-tj{border: 1px solid #eee;padding:0px 5px;}/*已选条件*/
+.s-tj b{color:#f00;}
+.s-tj em{color:#E43B3B;}
+.s-tj span{margin:0px 2px;color:#333;font-weight:bold;}
+.s-jg a{color:#666; }
+.s-jg a:hover{color:#E43B3B;}
+.s-jgx01{width:40px;height: 17px;padding:2px 1px;border: 1px solid #ccc;line-height: 17px;font-family: verdana;color: #999;margin-top:5px; }
+a.s-jgtj{border:1px solid #ddd;text-align: center;background: #ccc;display: block;height:25px;line-height:25px;width:40px;margin-top:3px;  }
+a.s-jgtj:hover{background:#ff3344;color:#fff;  }
+.s-cor a{width: 16px; height: 16px; display: block;}/*颜色*/
+.s-cor a span.s-hei{background: #000;display: block;width: 14px;height: 14px; margin-top: 1px; margin-left: 1px;}
+.s-cor a span.s-hui{background: #bbb;display: block;width: 14px;height: 14px; margin-top: 1px; margin-left: 1px;}
+.s-cor a span.s-bai{background: #fff;display: block;width: 14px;height: 14px; margin-top: 1px; margin-left: 1px;}
+.s-cor a span.s-fen{background: #ffd8d8;display: block;width: 14px;height: 14px; margin-top: 1px; margin-left: 1px;}
+.s-cor a span.s-hong{background:#f00;display: block;width: 14px;height: 14px; margin-top: 1px; margin-left: 1px;}
+.s-cor a span.s-mei{background: #ff028b;display: block;width: 14px;height: 14px; margin-top: 1px; margin-left: 1px;}
+.s-cor a span.s-zise{background: #b237f1;display: block;width: 14px;height: 14px; margin-top: 1px; margin-left: 1px;}
+.s-cor a span.s-lanse{background: #00f;display: block;width: 14px;height: 14px; margin-top: 1px; margin-left: 1px;}
+.s-cor a span.s-lvse{background: #17bc32;display: block;width: 14px;height: 14px; margin-top: 1px; margin-left: 1px;}
+.s-cor a span.s-huang{background: #fc0;display: block;width: 14px;height: 14px; margin-top: 1px; margin-left: 1px;}
+.s-cor a span.s-cheng{background: #ff8a00;display: block;width: 14px;height: 14px; margin-top: 1px; margin-left: 1px;}
+.s-cor a span.s-zongse{background: #814312;display: block;width: 14px;height: 14px; margin-top: 1px; margin-left: 1px;}
+/*排序*/
+.fore1{height:40px;background:#f9f9f7;border: 1px solid #e6e6e6;}
+.fore1 dl {margin-left:0px;float:left;overflow:hidden; }
+.fore1 dl dt{float: left;margin:9px 10px 0px 10px;font-size:12px;font-weight:bold;   }
+.fore1 dl dd{overflow:hidden; float:left;line-height:25px;margin-top:6px;}
+.fore1 dl dd.fore1-moren a{width:55px; height:25px;display:block;border:1px solid #ddd;color:#666;background:#fff;text-align:center;}
+.fore1 dl dd.fore1-moren a:hover{height:25px;background:#fb5053;color:#fff;border:1px solid #fb5053;}
+
+.fore1 dl dd.fore1-curr a{width:55px;border:1px solid #fb5053;background:#fff;height:25px;display:block;background:#fb5053;color:#fff;}
+.fore1 dl dd.fore1-curr a:hover{color:#fff;border:1px solid #fb5053;}
+
+.fore1 dl dd.fore1-down a{width:80px;display:block;height:25px;border: 1px solid #fb5053;color:#fff;background:#fff;background:#fb5053;position:relative;text-align:center;  }
+.fore1 dl dd.fore1-down a{width:80px;display:block;height:25px;border: 1px solid #fb5053;color:#fff;background:#fff;background:#fb5053;position:relative;text-align:center;  }
+.fore1 dl dd.fore1-down a i{float:right;display:block;width:9px;height:11px;background: url('../../../image/sear-lei.png') no-repeat;background-position: -70px -46px;position:absolute;top:7px;right:5px;   }
+
+.fore1 dl dd.fore1-up a{width:80px;height:25px;display:block;border: 1px solid #fb5053;color:#fff;background:#dc3645;position:relative;text-align:center;}
+.fore1 dl dd.fore1-up a i{float:right;display:block;width:9px;height:11px;background: url('../../../image/sear-lei.png') no-repeat;background-position: -70px -58px;position:absolute;top:7px;right:5px; }
+
+
+
+.activity {float:left;padding-left:5px;}
+.activity dd a {float: left;margin-right: 14px;position: relative;padding-left: 16px;}
+.activity dd a:hover{color: #fb5053;}
+.activity b {display: block;font-size: 0px;height: 13px;left: 0px;position: absolute;top:7px;width: 13px;background: url('../../../image/sear-lei.png') no-repeat;background-position: -56px 0px;}
+.sea-kuan11{border:1px solid #ddd;height:22px;color:#999; }
+.sea-kuan22{ margin-left: 10px;height:22px;padding:3px 10px; border: 1px solid #ddd;border-radius:2px;text-align: center;text-decoration: none;cursor: pointer;color: #333;background:#f4f4f4;}
+.s-page11{float:right;margin-right:10px;}
+.s-page11 ul li{float:left;margin-top:8px;margin-right:4px;}
+.s-page11 ul li em{color:#fb5053;font-weight: bold;}
+.s-page11-bb{border:1px solid #ddd;}
+.s-page11 ul li.s-page11-a {display:block;width:70px;height:25px;background:#fff;line-height:25px;color: #cdcdcd;position:relative;text-align:center;}
+.s-page11 ul li.s-page11-a i{display:block;width:5px;height:9px;background: url('../../../image/sear-lei.png') no-repeat;background-position: 0px 0px;position:absolute;top:8px;left:4px;}
+.s-page11 ul li.s-page11-a a{display:block;width:70px;height:25px;border:1px solid #ddd;}
+.s-page11 ul li.s-page11-a a i{display:block;width:5px;height:9px;background: url('../../../image/sear-lei.png') no-repeat;background-position:-14px 0px;position:absolute;top:9px;left:6px;}
+.s-page11 ul li.s-page11-a a:hover{color:#fb5053;border:1px solid #fb5053;}
+.s-page11 ul li.s-page11-b {display:block;width:70px;height: 25px;background:#fff;line-height: 25px;color: #cdcdcd;position:relative;text-align:center;}
+.s-page11 ul li.s-page11-b i{display:block;width:5px;height:9px;background: url('../../../image/sear-lei.png') no-repeat;background-position: -7px 0px;position:absolute;top:8px;right:5px;  }
+.s-page11 ul li.s-page11-b a{display:block;width:70px;height:25px;border:1px solid #ddd;}
+.s-page11 ul li.s-page11-b a i{display:block;width:5px;height:9px;background: url('../../../image/sear-lei.png') no-repeat;background-position:-21px 0px;position:absolute;top:9px;right:6px; }
+.s-page11 ul li.s-page11-b a:hover{color:#fb5053;border:1px solid #fb5053;}
+/*分页*/
+    .s-page11-c{margin-right:10px;line-height:24px;  }
+    .s-page11 ul li.s-selec01 a{display:block;width: 30px; height:25px; border:1px solid #e4393c; color:#e4393c;background: #fdf3f3;line-height: 27px;text-align: center;}
+    .s-page11 ul li.s-selec02 a{display:block;width: 30px; height: 25px; border:1px solid #ccc; color:#666;background: #fff;line-height: 27px;text-align: center;}
+    .s-page11 ul li.s-selec03 a{display:block;width:64px; height: 25px; border:1px solid #ccc; color:#ccc;background: #fff;line-height: 27px;text-align: center;background: url(../../../image/sear-page.png);background-position:3px 5px;}
+    .s-page11 ul li.s-selec04 a{display:block;width:64px; height: 25px; border:1px solid #ccc; color:#666;background: #fff;line-height: 27px;text-align:center;background: url(../../../image/sear-page.png);background-position:50px -28px;}
+    .s-page11 ul li.s-selec05 a:hover{display:block;width:64px; height: 25px; border:1px solid #ccc; color:#666;background: #fff;line-height: 25px;text-align: center;background: url(../../../image/sear-page.png);background-position:3px 5px;}
+    .jumpto{width:30px;height:20px;text-align: center;margin-left:5px;margin-right: 5px;}
+    .btn-true{display: block;text-align: center;padding:0px 5px;  height:24px;background: #f5f5f5;border: 1px solid #ddd;line-height:24px;*width:36px;}
+
+  .pro{overflow: hidden;}    
+  .pro ul li{float: left; width:240px;height:390px;border: 1px solid #fff;overflow:hidden;margin-left:2px;margin-top: 20px;border-bottom:1px dashed #ddd;position:relative; }
+  .p-youhui{position:absolute;top:0px;right:10px;width:45px;height:55px;color:#fff;text-align:center;font-weight:bold;font-size:14px;line-height:40px;background:url(../../../image/ico-yh.png);}
+  .sh-sport{position:absolute;top:2px;right:13px;width:62px;height:62px;z-index: 1;}
+  .vsport1{background-position:-2px -2px; }
+  .vsport2{background-position:-86px -2px; }
+  .vsport3{background-position:-172px -2px; }
+  .vsport4{background-position:-258px -2px; }
+  .vsport5{background-position:-2px -82px; }
+  .vsport6{background-position:-86px -82px; }
+  .vsport7{background-position:-172px -82px; }
+  .vsport8{background-position:-258px -82px; }
+  .vsport9{background-position:-0px -165px; }
+  .vsport10{background-position: -86px -165px; }
+  .p-out{position:absolute;top:160px;right:0px;width:101px;height:65px;color:#fff;background:url(../../../image/ico-out.png);}
+  .pro ul li:hover{border: 1px solid #ddd;box-shadow: 0px 0px 5px #999;}
+  .p1{width:220px; height:220px; overflow:hidden;margin-left:10px;}
+  .p1 dl dd{float:left;}
+  .p2{overflow: hidden; margin-top:20px;margin-left: 10px;}  
+  .p2 dl{overflow:hidden;height:37px;}  
+  /*plat modify start 2014-08-18*/
+  .p2 dl dd{border:1px solid #ddd;float: left;margin-left:8px;}
+  /*plat modify end*/
+  
+  .p2 dl dd:hover{border: 1px solid #f00;}
+  .b-zqie01{float:left;width:16px;height:35px;background:url(../../../image/sear-lei.png);background-position:0px -46px;border:none;cursor:pointer;}
+  .b-zqie02{float:left;width:16px;height:35px;background:url(../../../image/sear-lei.png);background-position:-34px -46px;border:none;}
+  
+  /*.b-yqie01{float:right;width:16px;height:35px;background:url(../../../image/sear-lei.png);background-position:-17px -46px;border:none;cursor:pointer;}
+  .b-yqie02{float:right;margin-right:10px;width:16px;height:35px;background:url(../../../image/sear-lei.png);background-position:-51px -46px;border:none;}*/
+
+  /*plat modify start 2014-08-18*/
+  .b-yqie01{float:left;width:16px;height:35px;background:url(../../../image/sear-lei.png);background-position:-17px -46px;border:none;cursor:pointer;}
+  .b-yqie02{float:left;margin-right:10px;width:16px;height:35px;background:url(../../../image/sear-lei.png);background-position:-51px -46px;border:none;}
+  /*plat modify end*/
+
+  dl dd.b-select{border:1px solid #f00;cursor:pointer;}
+  dl dd.b-select img{border:1px solid #f00;margin:-1px;}
+
+  /*plat add start 2014-08-18*/
+.src-a-prev{width:16px;height:35px;float:left;display:inline;background:url('../../../image/sear-lei.png') repeat scroll 0px -46px transparent;}
+.src-div-thumbnail{     height: 37px;float:left;width:180px;position:relative;overflow: hidden;margin-right:8px;}
+.src-dl-thumbnail{float:left;position:absolute;overflow:hidden;/*width:500px;*/}
+.src-a-next{width:16px;height:35px;float:left;display:inline;background:url('../../../image/sear-lei.png') repeat scroll -51px -46px transparent;}
+/*plat add end*/
+  .p3{overflow:hidden;text-align:left;padding: 0px 8px;margin-top:10px;height:50px;}
+  .p3 a{color: #666;line-height: 25px;}
+  span.pt-hwg{width:69px;height:20px;display:block;background-position:-292px -154px;float:left;margin-top:4px;margin-right:5px;        }
+  span.pt-zgtb{width:80px;height:20px;display:block;background-position:-236px -828px;float:left;margin-top:4px;margin-right:5px;      }
+span.pt-hwzy{ width: 78px;height: 20px;display: block;background-position: -392px -828px;float: left; margin-top: 4px; margin-right: 5px;}
+  span.pt-zy{width:58px;height:20px;display:block;background-position:-324px -828px;float:left;margin-top:4px;margin-right:5px;       }
+  .p3 a em{color:#fb5053;font-weight:bold;  }
+  .p3 a:hover{color:#e43b3b;text-decoration:underline;}
+  .p4{padding: 0px 4px;margin-top:25px;overflow:hidden;height:25px; }
+  span.p4-jg01{color:#e43b3b;font-size:16px;font-weight:bold;float:left;}
+  span.p4-jg02{color:#e43b3b;;font-size:16px;float:left;background:url('../../../image/imgv3/s-ico.png') no-repeat;height:23px;display: block;padding-left:28px;*padding-left:28px;margin-left:5px;line-height:23px;font-weight:bold; }
+  .p4 span a{border: 1px solid #ddd; padding:2px 5px;background:#FFF;color:#999;float:right;border-radius:3px; }
+  .p4 span a:hover{color:#164a96; }
+  .p4 del{font-size:14px;color: #999; margin-left:5px;float:left;line-height:23px; }
+  span.p4-jg03{float:right;border:1px solid #c9525e;background:#ffe8ee;color:#c9525e;text-align:center;height:16px;display:block;line-height:16px;padding:2px 1px;     }
+  
+  .valc-n{overflow:hidden;float:left;  }
+  /*重新搜索*/
+  .s-sk{width:1200px;height:45px;background: #f6f6f6;margin-top:20px;overflow: hidden;padding-top:15px; } 
+  .s-sk-a{width: 540px;margin:0 auto;}
+  .s-sk-a em{font-size: 14px;font-family:Microsoft YaHei,simhei;font-weight:500;margin-right:5px; }
+  .s-sk-a input{width: 380px; height:25px;padding:2px;background: #fff;border: 1px solid #ccc; }
+  .s-sk-a input.s-btn{width:80px;height: 30px;background:#e43b3d;color:#fff;font-weight: bold;cursor: pointer;border: 1px solid #e22728; }
+  /*最近浏览*/
+  .s-eye{width:1200px;overflow: hidden;margin-top: 20px;border: 1px solid #ddd;}
+  .s-eye-tit{font-size: 14px;margin-top:10px;margin-left: 10px;}
+        .s-wrap{margin-bottom:10px;width: 1075px; margin: 0 auto;overflow: hidden;/*border:1px solid #f00;*/}
+        .s-wrap ul{}
+        .s-wrap li{width:200px;height:340px;margin-right:15px;border:1px solid #fff;}
+        .s-wrap li:hover{border: 1px solid #ddd;box-shadow: 0px 0px 5px #ddd;}
+        p.s-wa01{height:40px;margin-top: 10px;padding: 0 8px;height:35px;overflow: hidden;}
+        p.s-wa01 a:hover{color:#e43b3b; text-decoration:underline;}
+        p.s-wa02{height:35px;margin-top: 10px;padding: 0 8px;}
+        .s-zb{position: relative;top:130px;left:22px;width:12px;height:20px;display: block;background: url(../../../image/eyes.png);background-position:-8px -13px;}
+        .s-zb:hover{background: url(../../../image/eyes.png);background-position:-49px -13px;cursor: pointer;}
+        .s-yb{position: relative;top:-230px;left:1155px;width:12px;height:20px;display: block;background: url(../../../image/eyes.png);background-position:-26px -13px;}
+        .s-yb:hover{background: url(../../../image/eyes.png);background-position:-67px -13px;cursor: pointer;}
+
+/*搜索界面-无商品*/
+.no-search{width:1180px;margin:0 auto;overflow:hidden;margin-top:30px;}
+.no-search-gather{width:400px;overflow:hidden;margin:0 auto; }
+.no-search-ico{float:left;width:32px;height:28px;background: url(../../../image/sear-lei.png) -2px -14px;}
+.no-search-con{float:left;line-height:28px;margin-left:10px;width:320px; }
+.no-search-con strong{color: #fb5053;padding: 0px 5px 8px;}
+.search-hot-t{height:40px;line-height:40px;background:#f8f8f8;font-size:16px;font-family: Microsoft YaHei,simhei;font-weight: 500;padding-left:20px; }
+.search-hot{width:1200px;border:1px solid #ddd;overflow:hidden;margin-top:30px;*padding-bottom:10px;}
+.search-hot ul li {float:left;width: 240px;height: 420px;border: 1px solid #FFF;overflow: hidden;margin-left: 2px;
+ margin:10px 28px;}
+.search-hot ul li:hover{border: 1px solid #ddd;box-shadow: 0px 0px 5px #ddd;}
+
+/*显示有货*/
+.s-goods a{float:left;height:14px;line-height: 14px;color:#1e55ab;padding-left:18px;background: url('../../../image/sear-lei.png') no-repeat  -70px 1px transparent;margin-top:6px;margin-left:10px;}
+.s-goods a:hover{color:#fb5053;background: url('../../../image/sear-lei.png') no-repeat  -70px -13px transparent;}
+.s-goods-on a{float: left;padding-left: 18px;line-height: 14px;height: 14px;background: url("../../../image/sear-lei.png") no-repeat scroll -70px -13px transparent;color:#1e55ab;margin-top:6px;margin-left:10px; }
+
+.pro .p1 dd a,.sea-left-con li:not([class]) a,.hotv3-rtlia a{width:100%;display:block;position:relative;}
+.pro .p1 dd a:hover:after{content:url(http://img1.aolaigo.com/group1/M00/36/57/CggUFlppLSyAcFJpAAA1SF5UFs8621.jpg);}
+.sea-left-con li:not([class]) a:hover:after,.hotv3-rtlia a:hover:after{content:url(http://img1.aolaigo.com/group1/M00/36/57/CggUFlppLSyAEx0bAAAX8RFAHFg021.png);}
+.pro .p1 dd a:hover:after,.sea-left-con li:not([class]) a:hover:after,.hotv3-rtlia a:hover:after{position:absolute;left:50%;top:45%;z-index:3;-webkit-transform: translate(-50%, -50%);transform: translate(-50%, -50%);}
+.pro .p1 dd a:hover:before{font-size:24px;padding-top:80%;}
+.sea-left-con li:not([class]) a:hover:before,.hotv3-rtlia a:hover:before{font-size:14px;padding-top:75%;}
+.pro .p1 dd a:hover:before,.sea-left-con li:not([class]) a:hover:before,.hotv3-rtlia a:hover:before{content:'下载APP享优惠';color:#fff;text-align:center;font-family:Microsoft YaHei,simhei;width:100%;height:100%;bottom:0;left:0;border-radius:10px;background:rgba(0,0,0,0.6);position:absolute;box-sizing:border-box;z-index:2;}
+.top-nav .top-nav-cont .top-nav-ul>li a{position:relative;transition:color 0.5s;}
+.top-nav .top-nav-cont .top-nav-ul>li a:after{content:'';width:100%;height:0;position:absolute;background:#C81417;bottom:-8px;left:0;transition:height 0.5s;}
+.top-nav .top-nav-cont .top-nav-ul>li a:hover:after{height:4px;}

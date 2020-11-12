@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <script src="../js/jquery1.11.js"></script>
+    <link rel="stylesheet" href="../css/cart.css">
+    <script src="../js/cart.js"></script>
+    <link rel="stylesheet" href="first.html">
+</head>
+
+<body>
+    <script type="text/javascript">
+        $("span:first").nextAll().mouseenter(function() {
+            $(this).css({
+                'color': "red"
+            })
+        }).mouseleave(function() {
+            $(this).css({
+                'color': "black"
+            })
+        })
+    </script>
+    <section id="sections">
+        <!-- cart -->
+        <div class="cart-head">
+            <div class="checked-btn">
+                <input type="checkbox" name="" id="checked-all-btn"> 全选
+            </div>
+            <div class="message">
+                商品信息
+            </div>
+            <ul class="oUl">
+                <li>单价</li>
+                <li>数量</li>
+                <li>金额</li>
+                <li>操作</li>
+            </ul>
+        </div>
+    </section>
+    <section id="section">
+    </section>
+    <!-- 总和 -->
+    <div id="end">
+        <button id="sumBtn">结算</button>
+        <span id="null"></span>
+        <span>元</span>
+
+        <span id="sum">0</span>
+        <span>您需要支付：</span>
+    </div>
+</body>
+<script>
+    $("#sumBtn").click(function() {
+        alert("余额不足！")
+    })
+</script>
+
+</html>
